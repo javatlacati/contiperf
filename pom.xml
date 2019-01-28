@@ -57,7 +57,7 @@
         <url>https://github.com/javatlacati/contiperf</url>
         <connection>scm:git:git://github.com/javatlacati/contiperf.git</connection>
         <developerConnection>scm:git:git@github.com:javatlacati/contiperf.git</developerConnection>
-      <tag>contiperf-2.4.3</tag>
+      <tag>contiperf-2.4.4-SNAPSHOT</tag>
   </scm>
 
     <developers>
