@@ -31,8 +31,8 @@ import java.lang.annotation.Target;
 
 /**
  * Marks a test as unrepeatable. Unrepeatable tests will be executed only once,
- * possibly overriding other conflicting settings.<br/>
- * <br/>
+ * possibly overriding other conflicting settings.<br>
+ * <br>
  * Created: 16.10.2009 10:31:04
  * 
  * @since 1.0

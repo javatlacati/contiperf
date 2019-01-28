@@ -28,8 +28,8 @@ import com.github.javatlacati.contiperf.WaitTimer;
 import org.junit.Test;
 
 /**
- * Tests the '{@link None}' wait timer.<br/>
- * <br/>
+ * Tests the '{@link None}' wait timer.<br>
+ * <br>
  * Created: 06.04.2012 18:18:34
  * 
  * @since 2.1.0

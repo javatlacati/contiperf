@@ -24,8 +24,8 @@ package com.github.javatlacati.contiperf;
 
 /**
  * Indicates that a performance requirement has been missed in a performance
- * test.<br/>
- * <br/>
+ * test.<br>
+ * <br>
  * Created: 16.04.2010 11:50:09
  * 
  * @since 1.03

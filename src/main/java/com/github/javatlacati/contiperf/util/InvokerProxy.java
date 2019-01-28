@@ -25,8 +25,8 @@ package com.github.javatlacati.contiperf.util;
 import com.github.javatlacati.contiperf.Invoker;
 
 /**
- * {@link Invoker} implementation which acts as a proxy to another Invoker.<br/>
- * <br/>
+ * {@link Invoker} implementation which acts as a proxy to another Invoker.<br>
+ * <br>
  * Created: 29.03.2010 11:41:54
  * 
  * @since 1.0

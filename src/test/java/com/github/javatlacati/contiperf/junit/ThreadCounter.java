@@ -25,8 +25,8 @@ package com.github.javatlacati.contiperf.junit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Helper class for measuring concurrency.<br/>
- * <br/>
+ * Helper class for measuring concurrency.<br>
+ * <br>
  * Created: 16.04.2010 00:01:25
  * 
  * @since 1.03

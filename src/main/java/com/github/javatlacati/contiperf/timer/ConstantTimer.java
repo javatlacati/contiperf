@@ -25,8 +25,8 @@ package com.github.javatlacati.contiperf.timer;
 import com.github.javatlacati.contiperf.WaitTimer;
 
 /**
- * {@link WaitTimer} implementation which provides a constant wait time.<br/>
- * <br/>
+ * {@link WaitTimer} implementation which provides a constant wait time.<br>
+ * <br>
  * Created: 06.04.2012 17:09:47
  * 
  * @since 2.1.0

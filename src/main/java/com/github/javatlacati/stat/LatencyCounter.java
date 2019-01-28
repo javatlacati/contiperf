@@ -30,8 +30,8 @@ import com.github.javatlacati.contiperf.PerfTestExecutionError;
 import com.github.javatlacati.contiperf.clock.SystemClock;
 
 /**
- * Counts latencies and calculates performance-related statistics.<br/>
- * <br/>
+ * Counts latencies and calculates performance-related statistics.<br>
+ * <br>
  * Created: Created: 14.12.2006 18:11:58
  * 
  * @since 1.0

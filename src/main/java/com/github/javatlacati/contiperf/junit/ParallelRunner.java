@@ -35,11 +35,11 @@ import org.junit.runners.model.InitializationError;
 
 /**
  * Executes all tests of one test class concurrently. It's possible to specify
- * thread number with {@link Parallel} annotation.<br/>
- * <br/>
+ * thread number with {@link Parallel} annotation.<br>
+ * <br>
  * Created: 07.04.2012 17:18:54
  * 
- * @See {@link Parallel}
+ * @see Parallel
  * @since 2.1.0
  * @author Volker Bergmann
  */

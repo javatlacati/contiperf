@@ -32,8 +32,8 @@ import com.github.javatlacati.contiperf.report.ListReportModule;
 
 /**
  * {@link ExecutionLogger} implementation that stores all reported invocation
- * logs and summaries in lists.<br/>
- * <br/>
+ * logs and summaries in lists.<br>
+ * <br>
  * Created: 29.03.2010 12:37:33
  * 
  * @since 1.0

@@ -35,8 +35,8 @@ import com.github.javatlacati.contiperf.util.ContiPerfUtil;
 
 /**
  * {@link ExecutionLogger} implementation which writes the execution log to a
- * file.<br/>
- * <br/>
+ * file.<br>
+ * <br>
  * Created: 12.10.09 10:12:39
  * 
  * @since 1.0

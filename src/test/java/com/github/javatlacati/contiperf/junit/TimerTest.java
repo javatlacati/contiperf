@@ -31,8 +31,8 @@ import org.junit.Rule;
 import org.junit.Test;
 
 /**
- * Tests initialization and application of timers.<br/>
- * <br/>
+ * Tests initialization and application of timers.<br>
+ * <br>
  * Created: 06.04.2012 17:57:32
  * 
  * @since 2.1.0

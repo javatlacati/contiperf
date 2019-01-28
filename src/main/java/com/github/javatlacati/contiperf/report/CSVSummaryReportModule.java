@@ -38,8 +38,8 @@ import com.github.javatlacati.contiperf.util.ContiPerfUtil;
 import com.github.javatlacati.stat.LatencyCounter;
 
 /**
- * Writes summary information of the ContiPerf to a CSV file.<br/>
- * <br/>
+ * Writes summary information of the ContiPerf to a CSV file.<br>
+ * <br>
  * Created: 16.01.2011 11:03:46
  * 
  * @since 2.0.0

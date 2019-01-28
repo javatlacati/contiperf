@@ -29,8 +29,8 @@ import com.github.javatlacati.stat.LatencyCounter;
 
 /**
  * Replaces the {@link ExecutionLogger} interface of
- * ContiPerf 1 and adds context access and inter-module referencing features.<br/>
- * <br/>
+ * ContiPerf 1 and adds context access and inter-module referencing features.<br>
+ * <br>
  * Created: 16.01.2011 07:44:56
  * 
  * @since 2.0.0

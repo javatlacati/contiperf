@@ -28,8 +28,8 @@ import com.github.javatlacati.contiperf.WaitTimer;
 import org.junit.Test;
 
 /**
- * Tests the {@link ConstantTimer}.<br/>
- * <br/>
+ * Tests the {@link ConstantTimer}.<br>
+ * <br>
  * Created: 06.04.2012 18:10:41
  * 
  * @since 2.1.0

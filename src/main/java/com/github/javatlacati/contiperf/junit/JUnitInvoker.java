@@ -27,8 +27,8 @@ import com.github.javatlacati.contiperf.util.ContiPerfUtil;
 import org.junit.runners.model.Statement;
 
 /**
- * {@link Invoker} implementation for JUnit 4.7+.<br/>
- * <br/>
+ * {@link Invoker} implementation for JUnit 4.7+.<br>
+ * <br>
  * Created: 22.10.2009 16:55:12
  * 
  * @since 1.0

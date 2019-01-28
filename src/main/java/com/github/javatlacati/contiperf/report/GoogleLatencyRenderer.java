@@ -30,8 +30,8 @@ import com.github.javatlacati.contiperf.report.LatencyDataSet.LabelInfo;
 
 /**
  * Formats the latency distribution of a {@link LatencyCounter} using the Google
- * charts API.<br/>
- * <br/>
+ * charts API.<br>
+ * <br>
  * Created: 14.01.2011 11:54:18
  * 
  * @since 2.0.0

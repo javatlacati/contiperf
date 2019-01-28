@@ -57,7 +57,8 @@
         <url>https://github.com/javatlacati/contiperf</url>
         <connection>scm:git:git://github.com/javatlacati/contiperf.git</connection>
         <developerConnection>scm:git:git@github.com:javatlacati/contiperf.git</developerConnection>
-    </scm>
+      <tag>contiperf-2.4.3</tag>
+  </scm>
 
     <developers>
         <developer>
@@ -102,7 +103,7 @@
         <version.jdepend-maven-plugin>2.0-beta-1</version.jdepend-maven-plugin>
 
         <encoding>UTF-8</encoding>
-        <java.version>1.5</java.version>
+        <java.version>1.6</java.version>
     </properties>
 
     <dependencies>
@@ -167,6 +168,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
                     <encoding>${encoding}</encoding>
                     <source>${java.version}</source>
@@ -185,6 +187,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -214,6 +217,14 @@
                 <configuration>
                     <encoding>${encoding}</encoding>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -256,6 +267,16 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -301,6 +322,37 @@
 
         </plugins>
     </reporting>
+
+
+    <profiles>
+        <profile>
+            <id>releases</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.8</version>
+                        <extensions>true</extensions>
+                        <executions>
+                            <execution>
+                                <id>default-deploy</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>deploy</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <distributionManagement>
         <snapshotRepository>

@@ -30,8 +30,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Tests the profiling feature.<br/>
- * <br/>
+ * Tests the profiling feature.<br>
+ * <br>
  * Created: 21.07.2011 08:30:37
  * 
  * @since 2.0.0

@@ -31,8 +31,8 @@ import com.github.javatlacati.contiperf.report.ReportModule;
 import com.github.javatlacati.contiperf.util.InvokerProxy;
 
 /**
- * {@link InvokerProxy} that provides performance tracking features.<br/>
- * <br/>
+ * {@link InvokerProxy} that provides performance tracking features.<br>
+ * <br>
  * Created: 22.10.2009 16:36:43
  * 
  * @since 1.0

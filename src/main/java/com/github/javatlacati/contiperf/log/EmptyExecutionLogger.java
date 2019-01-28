@@ -26,8 +26,8 @@ import com.github.javatlacati.contiperf.ExecutionLogger;
 import com.github.javatlacati.contiperf.report.EmptyReportModule;
 
 /**
- * Empty implementation of the {@link ExecutionLogger} interface.<br/>
- * <br/>
+ * Empty implementation of the {@link ExecutionLogger} interface.<br>
+ * <br>
  * Created: 01.04.2010 12:05:53
  * 
  * @since 1.01

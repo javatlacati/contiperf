@@ -38,8 +38,8 @@ import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 
 /**
- * Tests the {@link ContiPerfRule}.<br/>
- * <br/>
+ * Tests the {@link ContiPerfRule}.<br>
+ * <br>
  * Created: 29.03.2010 12:35:53
  * 
  * @since 1.0

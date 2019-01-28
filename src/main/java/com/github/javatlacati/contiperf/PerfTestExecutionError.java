@@ -23,8 +23,8 @@
 package com.github.javatlacati.contiperf;
 
 /**
- * Indicates that an error occurred in performance test execution.<br/>
- * <br/>
+ * Indicates that an error occurred in performance test execution.<br>
+ * <br>
  * Created: 16.04.2010 11:50:32
  * 
  * @since 1.03

@@ -27,8 +27,8 @@ import com.github.javatlacati.contiperf.Clock;
 /**
  * Abstract implementation of the {@link Clock} interface. Inherit custom
  * {@link Clock} implementations from this class in order to have a better
- * future compatibility.<br/>
- * <br/>
+ * future compatibility.<br>
+ * <br>
  * Created: 24.05.2012 08:06:01
  * 
  * @since 2.2.0

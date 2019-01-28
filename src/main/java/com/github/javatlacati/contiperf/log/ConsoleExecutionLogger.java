@@ -27,8 +27,8 @@ import com.github.javatlacati.contiperf.report.ConsoleReportModule;
 
 /**
  * {@link ExecutionLogger} implementation which writes the execution log to the
- * console.<br/>
- * <br/>
+ * console.<br>
+ * <br>
  * Created: 12.10.09 08:13:06
  * 
  * @since 1.0

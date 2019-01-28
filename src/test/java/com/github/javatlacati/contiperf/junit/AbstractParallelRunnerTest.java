@@ -38,8 +38,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * Tests the {@link ParallelRunner}.<br/>
- * <br/>
+ * Tests the {@link ParallelRunner}.<br>
+ * <br>
  * Created: 23.01.2014 12:10:45
  * 
  * @since 2.4.0

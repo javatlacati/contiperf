@@ -30,8 +30,8 @@ import com.github.javatlacati.contiperf.PerformanceRequirement;
 import com.github.javatlacati.stat.LatencyCounter;
 
 /**
- * {@link ReportModule} that stores all invocation information in {@link List}s.<br/>
- * <br/>
+ * {@link ReportModule} that stores all invocation information in {@link List}s.<br>
+ * <br>
  * Created: 16.01.2011 14:36:48
  * 
  * @since 2.0.0

@@ -34,8 +34,8 @@ import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.BlockJUnit4ClassRunner;
 
 /**
- * Parent class for tests that verify ContiPerf functionality.<br/>
- * <br/>
+ * Parent class for tests that verify ContiPerf functionality.<br>
+ * <br>
  * Created: 24.05.2010 06:18:21
  * 
  * @since 1.05

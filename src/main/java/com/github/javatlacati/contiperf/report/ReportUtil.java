@@ -27,8 +27,8 @@ import com.github.javatlacati.contiperf.PerformanceRequirement;
 import com.github.javatlacati.stat.LatencyCounter;
 
 /**
- * Utility class for report modules.<br/>
- * <br/>
+ * Utility class for report modules.<br>
+ * <br>
  * Created: 25.01.2011 19:52:59
  * 
  * @since 2.0.0

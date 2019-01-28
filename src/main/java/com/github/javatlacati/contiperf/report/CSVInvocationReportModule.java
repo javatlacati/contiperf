@@ -34,8 +34,8 @@ import com.github.javatlacati.stat.LatencyCounter;
 /**
  * {@link ReportModule} that creates a CSV file with one line per invocation,
  * which reports the measured latency in the first column and the start time in
- * the second one.<br/>
- * <br/>
+ * the second one.<br>
+ * <br>
  * Created: 16.01.2011 17:05:11
  * 
  * @since 2.0.0

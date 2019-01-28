@@ -35,8 +35,8 @@ import com.github.javatlacati.stat.LatencyCounter;
 
 /**
  * {@link ReportModule} which creates a CSV file that reports how often (2nd
- * column) which latency (1st column) was measured.<br/>
- * <br/>
+ * column) which latency (1st column) was measured.<br>
+ * <br>
  * Created: 16.01.2011 19:22:23
  * 
  * @since 2.0.0

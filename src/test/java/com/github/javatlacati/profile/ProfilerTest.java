@@ -29,8 +29,8 @@ import java.util.List;
 import org.junit.Test;
 
 /**
- * Tests the {@link Profiler}.<br/>
- * <br/>
+ * Tests the {@link Profiler}.<br>
+ * <br>
  * Created: 19.05.2011 09:43:47
  * 
  * @since 2.0.0

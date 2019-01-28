@@ -26,8 +26,8 @@ import java.io.Closeable;
 
 /**
  * Parent interface for ContiPerf adapters that perform, if necessary, parameter
- * generation and the actual invocation of a target service.<br/>
- * <br/>
+ * generation and the actual invocation of a target service.<br>
+ * <br>
  * Created: 03.06.2010 19:18:21
  * 
  * @since 1.07

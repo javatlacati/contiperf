@@ -44,8 +44,8 @@ import org.junit.runners.model.Statement;
 /**
  * Implementation of {@link org.junit.runners.model.Statement} which wraps
  * another Statement and adds multiple invocation, execution timing and duration
- * check.<br/>
- * <br/>
+ * check.<br>
+ * <br>
  * Created: 12.10.2009 07:37:47
  * 
  * @since 1.0

@@ -23,8 +23,8 @@
 package com.github.javatlacati.contiperf;
 
 /**
- * Indicates invalid configuration settings in a performance test.<br/>
- * <br/>
+ * Indicates invalid configuration settings in a performance test.<br>
+ * <br>
  * Created: 16.04.2010 11:51:02
  * 
  * @since 1.03

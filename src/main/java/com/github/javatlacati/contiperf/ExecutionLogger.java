@@ -26,8 +26,8 @@ import com.github.javatlacati.contiperf.report.LoggerModuleAdapter;
 import com.github.javatlacati.contiperf.report.ReportModule;
 
 /**
- * Deprecated Observer interface for ContiPerf 1.x.<br/>
- * <br/>
+ * Deprecated Observer interface for ContiPerf 1.x.<br>
+ * <br>
  * Created: 12.10.2009 08:11:23
  * 
  * @since 1.0
@@ -36,29 +36,29 @@ import com.github.javatlacati.contiperf.report.ReportModule;
  *             ExecutionLogger, replace it with the corresponding ReportModule.
  *             If the old version was
  * 
- *             <pre>
- *     @Rule public ContiPerfRule = new ContiPerfRule(new ConsoleExecutionLogger());
- * </pre>
+ *             <code>
+ *     {@literal @}Rule public ContiPerfRule = new ContiPerfRule(new ConsoleExecutionLogger());
+ * </code>
  * 
  *             the new version would be
  * 
- *             <pre>
- *     @Rule public ContiPerfRule = new ContiPerfRule(new ConsoleReportModule());
- * </pre>
+ *             <code>
+ *     {@literal @}Rule public ContiPerfRule = new ContiPerfRule(new ConsoleReportModule());
+ * </code>
  * 
  *             Custom ExecutionLogger implementations still can be used by
  *             wrapping them with a {@link LoggerModuleAdapter}. If the old
  *             version was
  * 
- *             <pre>
- *     @Rule public ContiPerfRule = new ContiPerfRule(new MyCustomLogger());
- * </pre>
+ *             <code>
+ *     {@literal @}Rule public ContiPerfRule = new ContiPerfRule(new MyCustomLogger());
+ * </code>
  * 
  *             the new version would be
  * 
- *             <pre>
- *     @Rule public ContiPerfRule = new ContiPerfRule(new LoggerModuleAdapter(new MyCustomLogger()));
- * </pre>
+ *             <code>
+ *     {@literal @}Rule public ContiPerfRule = new ContiPerfRule(new LoggerModuleAdapter(new MyCustomLogger()));
+ * </code>
  */
 @Deprecated
 public interface ExecutionLogger {

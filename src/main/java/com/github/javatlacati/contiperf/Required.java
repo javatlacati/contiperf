@@ -31,8 +31,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * Specifies performance requirements for a test.<br/>
- * <br/>
+ * Specifies performance requirements for a test.<br>
+ * <br>
  * Created: 15.10.2009 14:42:57
  * 
  * @since 1.0
@@ -101,7 +101,7 @@ public @interface Required {
      * Defines the rate of allowed errors.
      * 
      * <pre>
-     *     2% -> 0.02
+     *     2% -&gt; 0.02
      * </pre>
      */
     double allowedErrorsRate() default 0.;

@@ -25,8 +25,8 @@ package com.github.javatlacati.contiperf;
 import com.github.javatlacati.contiperf.util.ContiPerfUtil;
 
 /**
- * Defines performance requirements on a test.<br/>
- * <br/>
+ * Defines performance requirements on a test.<br>
+ * <br>
  * Created: 18.10.2009 06:21:57
  * 
  * @since 1.0

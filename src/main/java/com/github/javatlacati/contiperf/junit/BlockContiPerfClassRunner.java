@@ -37,8 +37,8 @@ import org.junit.runners.model.Statement;
 
 /**
  * Replaces the standard {@link BlockJUnit4ClassRunner} for supporting ContiPerf
- * features in performance test suites.<br/>
- * <br/>
+ * features in performance test suites.<br>
+ * <br>
  * Created: 02.05.2010 07:54:08
  * 
  * @since 1.05

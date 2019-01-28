@@ -48,7 +48,6 @@ import org.junit.runners.model.Statement;
  * Implements the JUnit {@link MethodRule} interface for adding performance test
  * features to test calls.
  * 
- * <p>
  * for activating it, add an attribute of this class to your test class, e.g.:
  * 
  * <pre>
@@ -65,9 +64,7 @@ import org.junit.runners.model.Statement;
  * 
  * ContiPerf will then intercept each test method call and optionally cause
  * multiple invocations and check total execution time against a time limit.
- * </p>
- * 
- * <p>
+ *
  * invocation counts and time limits can be configured by Java annotations, e.g.
  * 
  * <pre>
@@ -78,10 +75,7 @@ import org.junit.runners.model.Statement;
  *     Thread.sleep(200);
  * }
  * </pre>
- * 
- * </p>
- * 
- * <p>
+ *
  * For enabling different test settings, the invocation count values can be
  * configured in a properties file <code>contiperf.properties</code> which
  * assigns the invocation count to the fully qualified method name, e.g.
@@ -92,9 +86,7 @@ import org.junit.runners.model.Statement;
  * </pre>
  * 
  * If the properties file exists, it overrides the annotation values.
- * </p>
- * 
- * <p>
+ *
  * By default, the execution times are written to the CSV file
  * <code>target/contiperf/contiperf.log</code>. They have four columns, listing
  * the
@@ -104,15 +96,12 @@ import org.junit.runners.model.Statement;
  * <li>invocation count</li>
  * <li>start time in milliseconds since 1970-01-01</li>
  * </ol>
- * </p>
- * 
- * <p>
+ *
  * For reusing integration tests as performance tests, you can suppress
  * ContiPerf execution by setting the System property
  * <code>contiperf.active=false</code>.
- * </p>
- * <br/>
- * <br/>
+ * <br>
+ * <br>
  * Created: 12.10.2009 07:36:02
  * 
  * @since 1.0

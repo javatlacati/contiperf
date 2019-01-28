@@ -27,8 +27,8 @@ import java.util.concurrent.atomic.AtomicLong;
 import com.github.javatlacati.contiperf.util.ContiPerfUtil;
 
 /**
- * Calls the invoker a fixed number of times.<br/>
- * <br/>
+ * Calls the invoker a fixed number of times.<br>
+ * <br>
  * Created: 22.10.2009 06:30:28
  * 
  * @since 1.0

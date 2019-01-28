@@ -24,8 +24,8 @@ package com.github.javatlacati.contiperf;
 
 /**
  * Abstract helper class which provides common functionality for
- * {@link InvocationRunner}s.<br/>
- * <br/>
+ * {@link InvocationRunner}s.<br>
+ * <br>
  * Created: 06.04.2012 17:38:28
  * 
  * @since 2.1.0

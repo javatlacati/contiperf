@@ -31,12 +31,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
 /**
- * Annotation to mark a method as being potentially run concurrently.<br/>
- * <br/>
+ * Annotation to mark a method as being potentially run concurrently.<br>
+ * <br>
  * Created: 23.01.2014 11:27:30
  * 
  * @see ParallelRunner
- * @see com.google.code.tempusfugit.concurrency.ConcurrentRule
+ * see also com.google.code.tempusfugit.concurrency.ConcurrentRule
  * @since 2.4.0
  * @author Lucas Pouzac
  */

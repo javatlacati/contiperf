@@ -35,8 +35,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
- * Tests proper ExecutionLogger handling.<br/>
- * <br/>
+ * Tests proper ExecutionLogger handling.<br>
+ * <br>
  * Created: 22.05.2010 18:36:37
  * 
  * @since 1.05

@@ -36,8 +36,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
- * Integration test for ContiPerf's {@link ReportModule} support.<br/>
- * <br/>
+ * Integration test for ContiPerf's {@link ReportModule} support.<br>
+ * <br>
  * Created: 16.01.2011 14:06:10
  * 
  * @since 2.0.0

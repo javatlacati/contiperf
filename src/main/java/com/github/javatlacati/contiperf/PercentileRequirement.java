@@ -23,8 +23,8 @@
 package com.github.javatlacati.contiperf;
 
 /**
- * Defines percentile performance requests on a test.<br/>
- * <br/>
+ * Defines percentile performance requests on a test.<br>
+ * <br>
  * Created: 18.10.2009 06:25:42
  * 
  * @since 1.0

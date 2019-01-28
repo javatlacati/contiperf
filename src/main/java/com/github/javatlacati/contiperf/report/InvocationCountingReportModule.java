@@ -25,8 +25,8 @@ package com.github.javatlacati.contiperf.report;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * {@link ReportModule} implementation that counts the number of invocations.<br/>
- * <br/>
+ * {@link ReportModule} implementation that counts the number of invocations.<br>
+ * <br>
  * Created: 16.01.2011 16:03:10
  * 
  * @since 2.0.0

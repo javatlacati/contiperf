@@ -80,8 +80,8 @@ import com.github.javatlacati.contiperf.timer.RandomTimer;
  * validate test execution. For the example above, a minimum rampUp time of 9
  * seconds is useful:
  * <code>@PerfTest(threads = 10, duration = 60000, rampUp = 1000, warmUp = 9000)</code>
- * <br/>
- * <br/>
+ * <br>
+ * <br>
  * Created: 14.10.2009 14:41:18
  * 
  * @since 1.0

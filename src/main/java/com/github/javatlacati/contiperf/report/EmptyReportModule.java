@@ -23,8 +23,8 @@
 package com.github.javatlacati.contiperf.report;
 
 /**
- * Empty implementation of the {@link ReportModule} interface.<br/>
- * <br/>
+ * Empty implementation of the {@link ReportModule} interface.<br>
+ * <br>
  * Created: 16.01.2011 14:29:06
  * 
  * @since 2.0.0

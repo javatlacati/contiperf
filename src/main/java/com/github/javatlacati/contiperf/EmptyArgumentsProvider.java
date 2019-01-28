@@ -23,8 +23,8 @@
 package com.github.javatlacati.contiperf;
 
 /**
- * {@link ArgumentsProvider} implementation for no-arg invocations.<br/>
- * <br/>
+ * {@link ArgumentsProvider} implementation for no-arg invocations.<br>
+ * <br>
  * Created: 22.10.2009 06:44:19
  * 
  * @since 1.0

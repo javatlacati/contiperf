@@ -25,8 +25,8 @@ package com.github.javatlacati.contiperf;
 import com.github.javatlacati.contiperf.util.ContiPerfUtil;
 
 /**
- * Calls the invoker for a certain amount of time.<br/>
- * <br/>
+ * Calls the invoker for a certain amount of time.<br>
+ * <br>
  * Created: 15.04.2010 23:13:52
  * 
  * @since 1.03

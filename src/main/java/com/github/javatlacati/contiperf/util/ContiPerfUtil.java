@@ -41,8 +41,8 @@ import com.github.javatlacati.contiperf.clock.SystemClock;
 import org.junit.runners.model.FrameworkMethod;
 
 /**
- * Provides I/O utility methods.<br/>
- * <br/>
+ * Provides I/O utility methods.<br>
+ * <br>
  * Created: 18.10.09 07:43:54
  * 
  * @since 1.0

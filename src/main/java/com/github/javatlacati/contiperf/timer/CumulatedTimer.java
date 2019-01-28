@@ -29,8 +29,8 @@ import com.github.javatlacati.contiperf.WaitTimer;
 /**
  * {@link WaitTimer} implementation which provides wait times in a range between
  * min and max with lower probabilities for border values and higher
- * probabilities for values close to the average.<br/>
- * <br/>
+ * probabilities for values close to the average.<br>
+ * <br>
  * Created: 06.04.2012 17:20:27
  * 
  * @since 2.1.0

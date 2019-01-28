@@ -27,8 +27,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
- * Tests the {@link LatencyCounter}.<br/>
- * <br/>
+ * Tests the {@link LatencyCounter}.<br>
+ * <br>
  * Created: 26.02.2012 18:31:16
  * 
  * @since 2.1.0

@@ -42,8 +42,8 @@ import com.github.javatlacati.stat.LatencyCounter;
 /**
  * {@link ReportModule} implementation that creates an HTML report of the
  * performance tests, their requirements, measurements and latency distribution
- * chart.<br/>
- * <br/>
+ * chart.<br>
+ * <br>
  * Created: 14.01.2011 16:29:50
  * 
  * @since 2.0.0
@@ -131,7 +131,7 @@ public class HtmlReportModule extends AbstractReportModule {
 	    // Render Help link
 	    out.println("<a href='http://databene.org/contiperf'>Help</a>");
 	    out.println("<hr/>");
-	    out.println("<br/>");
+	    out.println("<br>");
 
 	    // render overview table
 	    out.println("<table border='1' cellspacing='0' cellpadding='3px' style='border-color:#eee'>");
@@ -144,7 +144,7 @@ public class HtmlReportModule extends AbstractReportModule {
 	    out.println(CPF_MARKER_1);
 	    out.println("</table>");
 
-	    out.println("<br/>");
+	    out.println("<br>");
 	    out.println("<hr/>");
 
 	    // render first entry
@@ -260,7 +260,7 @@ public class HtmlReportModule extends AbstractReportModule {
 	out.println("		</td>");
 	out.println("	</tr>");
 	out.println("</table>");
-	out.println("<br/>");
+	out.println("<br>");
 
 	// render ReportModule links
 	boolean first = true;
@@ -275,7 +275,7 @@ public class HtmlReportModule extends AbstractReportModule {
 		first = false;
 	    }
 	}
-	out.println("<br/><br/><br/>");
+	out.println("<br><br><br>");
     }
 
     private static void appendRef(String ref, String label, PrintWriter out) {
@@ -327,11 +327,11 @@ public class HtmlReportModule extends AbstractReportModule {
 
 	out.println("	<tr valign='top'>");
 	out.println("		<th>&nbsp;</th>");
-	out.println("		<th>Measured<br/>(" + counters[0].getClockName()
+	out.println("		<th>Measured<br>(" + counters[0].getClockName()
 		+ ")</th>");
 	out.println("		<th>Required</th>");
 	for (int i = 1; i < counters.length; i++) {
-	    out.println("		<th>Measured<br/>(" + counters[i].getClockName()
+	    out.println("		<th>Measured<br>(" + counters[i].getClockName()
 		    + ")</th>");
 	}
 	out.println("	</tr>");

@@ -23,8 +23,8 @@
 package com.github.javatlacati.contiperf.report;
 
 /**
- * Holds the data of an invocation log entry.<br/>
- * <br/>
+ * Holds the data of an invocation log entry.<br>
+ * <br>
  * Created: 29.03.2010 12:38:26
  * 
  * @since 1.0

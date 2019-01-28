@@ -47,8 +47,8 @@ import com.github.javatlacati.stat.LatencyCounter;
  *     System.out.println("avg:" + counter.averageLatency + ", max:" + counter.maxLatency())
  * </pre>
  * 
- * <br/>
- * <br/>
+ * <br>
+ * <br>
  * Created: 14.01.2011 11:17:30
  * 
  * @since 2.0.0

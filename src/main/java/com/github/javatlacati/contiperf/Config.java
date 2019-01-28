@@ -28,8 +28,8 @@ import com.github.javatlacati.contiperf.report.HtmlReportModule;
 import com.github.javatlacati.contiperf.report.ReportContext;
 
 /**
- * Parses and provides the ContiPerf configuration.<br/>
- * <br/>
+ * Parses and provides the ContiPerf configuration.<br>
+ * <br>
  * Created: 18.10.2009 06:46:31
  * 
  * @since 1.0

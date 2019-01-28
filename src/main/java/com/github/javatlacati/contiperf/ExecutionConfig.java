@@ -26,8 +26,8 @@ import com.github.javatlacati.contiperf.clock.SystemClock;
 import com.github.javatlacati.contiperf.timer.None;
 
 /**
- * Holds the execution configuration for a single test.<br/>
- * <br/>
+ * Holds the execution configuration for a single test.<br>
+ * <br>
  * Created: 18.10.2009 06:31:25
  * 
  * @since 1.0

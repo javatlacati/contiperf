@@ -24,8 +24,8 @@ package com.github.javatlacati.contiperf;
 
 /**
  * Abstraction of classes that provide arguments for {@link Invoker} calls in a
- * performance test run.<br/>
- * <br/>
+ * performance test run.<br>
+ * <br>
  * Created: 22.10.2009 06:40:33
  * 
  * @since 1.0

@@ -28,8 +28,8 @@ import com.github.javatlacati.stat.LatencyCounter;
 
 /**
  * {@link ReportModule} implementation that prints all information to the
- * console.<br/>
- * <br/>
+ * console.<br>
+ * <br>
  * Created: 16.01.2011 14:27:05
  * 
  * @since 2.0.0

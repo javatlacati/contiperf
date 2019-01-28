@@ -36,8 +36,8 @@ import org.junit.Rule;
 import org.junit.Test;
 
 /**
- * Tests the usage of custom {@link Clock}s.<br/>
- * <br/>
+ * Tests the usage of custom {@link Clock}s.<br>
+ * <br>
  * Created: 24.05.2012 07:36:24
  * 
  * @since 2.2.0

@@ -25,8 +25,8 @@ package com.github.javatlacati.contiperf.junit;
 import com.github.javatlacati.contiperf.report.AbstractReportModule;
 
 /**
- * Helper class for testing ExecutionLogger handling.<br/>
- * <br/>
+ * Helper class for testing ExecutionLogger handling.<br>
+ * <br>
  * Created: 22.05.2010 19:01:22
  * 
  * @since 1.05

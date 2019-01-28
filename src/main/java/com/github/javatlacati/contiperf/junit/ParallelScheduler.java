@@ -33,8 +33,8 @@ import java.util.concurrent.Future;
 import org.junit.runners.model.RunnerScheduler;
 
 /**
- * {@link RunnerScheduler} which executes all tests in parallel.<br/>
- * <br/>
+ * {@link RunnerScheduler} which executes all tests in parallel.<br>
+ * <br>
  * Created: 08.04.2012 07:11:38
  * 
  * @since 2.1.0
