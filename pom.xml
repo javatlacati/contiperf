@@ -1,20 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.databene</groupId>
+    <groupId>com.github.javatlacati</groupId>
     <artifactId>contiperf</artifactId>
     <version>2.4.3</version>
 
     <packaging>jar</packaging>
     <name>databene ContiPerf</name>
-    <url>http://databene.org/contiperf</url>
+    <url>https://github.com/javatlacati/contiperf</url>
     <description>
     	ContiPerf is an open source testing utility that enables the user to easily
     	convert JUnit 4 test cases into performance tests.
     </description>
 
     <issueManagement>
-        <url>https://github.com/lucaspouzac/contiperf/issues</url>
+        <url>https://github.com/javatlacati/contiperf/issues</url>
         <system>GitHub Issues</system>
     </issueManagement>
 
@@ -54,9 +54,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/lucaspouzac/contiperf</url>
-        <connection>scm:git:git://github.com/lucaspouzac/contiperf.git</connection>
-        <developerConnection>scm:git:git@github.com:lucaspouzac/contiperf.git</developerConnection>
+        <url>https://github.com/javatlacati/contiperf</url>
+        <connection>scm:git:git://github.com/javatlacati/contiperf.git</connection>
+        <developerConnection>scm:git:git@github.com:javatlacati/contiperf.git</developerConnection>
     </scm>
 
     <developers>
@@ -78,6 +78,16 @@
             <timezone>+1</timezone>
             <roles>
                 <role>Developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Ruslan López Carro</name>
+            <id>javatlacati</id>
+            <email>scherzo_16@hotmail.com</email>
+            <timezone>-6</timezone>
+            <roles>
+                <role>Developer</role>
+                <role>Mantainer</role>
             </roles>
         </developer>
     </developers>
@@ -266,12 +276,12 @@
         </plugins>
     </reporting>
 
-    <distributionManagement>
-        <repository>
-            <id>databene.repo</id>
-            <name>databene Internal Repository</name>
-            <url>ftp://databene.org</url>
-        </repository>
-    </distributionManagement>
+    <!--<distributionManagement>-->
+        <!--<repository>-->
+            <!--<id>databene.repo</id>-->
+            <!--<name>databene Internal Repository</name>-->
+            <!--<url>ftp://databene.org</url>-->
+        <!--</repository>-->
+    <!--</distributionManagement>-->
 
 </project>
