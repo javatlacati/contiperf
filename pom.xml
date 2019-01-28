@@ -232,6 +232,7 @@
                     </additionalConfig>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 
@@ -277,12 +278,11 @@
         </plugins>
     </reporting>
 
-    <!--<distributionManagement>-->
-        <!--<repository>-->
-            <!--<id>databene.repo</id>-->
-            <!--<name>databene Internal Repository</name>-->
-            <!--<url>ftp://databene.org</url>-->
-        <!--</repository>-->
-    <!--</distributionManagement>-->
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
