@@ -84,10 +84,22 @@ public class Config {
 
     public File getReportFolder() {
 	File targetDir = new File("target");
-	File reportFolder = (targetDir.exists() ? new File(targetDir,
-		DEFAULT_REPORT_FOLDER_NAME) : new File(
-		DEFAULT_REPORT_FOLDER_NAME)); // TODO v2.x determine from config
-					      // file
+
+		String dirName = System.getProperty(DEFAULT_REPORT_FOLDER_NAME);
+		if (dirName == null || dirName.trim().length() == 0) {
+			dirName = DEFAULT_CONFIG_FILENAME;
+		}
+
+		File reportFolder;
+		if (targetDir.exists()) {
+			reportFolder = new File(targetDir,
+					dirName);
+		} else {
+			reportFolder = new File(
+					dirName);
+		}
+
+		// TODO v2.x determine from config file
 	return reportFolder;
     }
 
