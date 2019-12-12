@@ -40,7 +40,7 @@ import com.github.javatlacati.contiperf.timer.RandomTimer;
  * long the test should take, the level of concurrency and timings to apply. Two
  * basic modes can be used: count-based or duration-based execution.
  * 
- * <h3>Count-based execution</h3> In count-based execution, the total number of
+ * <h2>Count-based execution</h2> In count-based execution, the total number of
  * test executions is stated and ContiPerf runs until the number has been
  * reached - however slow or fast this may be. Example:
  * <code>@PerfTest(invocations = 3000, threads = 10)</code> advises ContiPerf to
