@@ -22,27 +22,33 @@
 
 package com.github.javatlacati.contiperf.junit;
 
+import org.hamcrest.Matchers;
+import org.junit.AfterClass;
+
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
+
 /**
  * Tests the {@link ParallelRunner}.<br>
  * <br>
  * Created: 07.04.2012 17:36:35
- * 
- * @since 2.1.0
+ *
  * @author Volker Bergmann
+ * @since 2.1.0
  */
 public class ParallelRunnerTest extends AbstractParallelRunnerTest {
 
-//    @AfterClass
-//    public static void assertTestThreadsSpawned() {
-//	assertThat(threads.size(), is(CONCURRENT_COUNT));
-//    }
+    @AfterClass
+    public static void assertTestThreadsSpawned() {
+        assertThat(threads.size(), greaterThanOrEqualTo(CONCURRENT_COUNT));
+    }
 
     /**
      * {@inheritDoc}
      */
     @Override
     protected int getConcurrentCount() {
-	return CONCURRENT_COUNT;
+        return CONCURRENT_COUNT;
     }
 
 }

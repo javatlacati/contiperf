@@ -22,13 +22,6 @@
 
 package com.github.javatlacati.contiperf.junit;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.TimeoutException;
-
 import com.github.javatlacati.contiperf.PerfTest;
 import com.github.javatlacati.contiperf.timer.ConstantTimer;
 import org.junit.AfterClass;
@@ -37,13 +30,21 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import static org.junit.Assert.assertTrue;
+
 /**
  * Tests the {@link ParallelRunner}.<br>
  * <br>
  * Created: 23.01.2014 12:10:45
- * 
- * @since 2.4.0
+ *
  * @author Lucas Pouzac
+ * @since 2.4.0
  */
 @RunWith(ParallelRunner.class)
 @Parallel(count = AbstractParallelRunnerTest.CONCURRENT_COUNT)
@@ -52,24 +53,24 @@ public abstract class AbstractParallelRunnerTest {
     protected final static int CONCURRENT_COUNT = 3;
 
     protected static final Set<String> threads = Collections
-	    .synchronizedSet(new HashSet<String>());
+            .synchronizedSet(new HashSet<String>(CONCURRENT_COUNT));
 
     @Test
     public void shouldRunInParallel1() throws TimeoutException,
-	    InterruptedException {
-	logCurrentThread();
+            InterruptedException {
+        logCurrentThread();
     }
 
     @Test
     public void shouldRunInParallel2() throws TimeoutException,
-	    InterruptedException {
-	logCurrentThread();
+            InterruptedException {
+        logCurrentThread();
     }
 
     @Test
     public void shouldRunInParallel3() throws TimeoutException,
-	    InterruptedException {
-	logCurrentThread();
+            InterruptedException {
+        logCurrentThread();
     }
 
     @Test
@@ -84,7 +85,7 @@ public abstract class AbstractParallelRunnerTest {
 	logCurrentThread();
     }
 
-    private void logCurrentThread() throws TimeoutException,
+    void logCurrentThread() throws TimeoutException,
 	    InterruptedException {
 	Thread.sleep(200);
 	threads.add(Thread.currentThread().getName());
@@ -92,37 +93,70 @@ public abstract class AbstractParallelRunnerTest {
     }
 
     private void waitToForceCachedThreadPoolToCreateNewThread()
-	    throws InterruptedException, TimeoutException {
-	success(new Condition() {
-	    public boolean isSatisfied() {
-		return threads.size() == getConcurrentCount();
-	    }
-	});
+            throws InterruptedException, TimeoutException {
+        success(new Condition() {
+            public boolean isSatisfied() {
+                return threads.size() == getConcurrentCount();
+            }
+        });
     }
 
     @Test(expected = AssertionError.class)
     public void concurrentFailuresFailInTheMainTestThread()
-	    throws InterruptedException {
-	Assert.fail();
+            throws InterruptedException {
+        Assert.fail();
     }
 
     protected abstract int getConcurrentCount();
 
-    private static boolean success(Condition condition)
-	    throws InterruptedException {
-	int timeout = 0;
-	while (timeout < 2000) {
-	    if (condition.isSatisfied()) {
-		return true;
-	    }
-	    timeout += 50;
-	    Thread.sleep(50);
-	}
-	return false;
+    private static boolean success(final Condition condition)
+            throws InterruptedException {
+
+        final ScheduledExecutorService executorService
+                = Executors.newSingleThreadScheduledExecutor();
+
+        final AtomicBoolean result = new AtomicBoolean(false);
+
+        ScheduledFuture<?> future = null;
+
+        final ScheduledFuture<?> finalFuture = future; //variable for pointer holding
+        final Runnable command = new Runnable() {
+            private boolean valueSet = false;
+
+            @Override
+            public void run() {
+                if (valueSet) {
+                    if (finalFuture != null) {
+                        finalFuture.cancel(true); // early return
+                    }
+                } else {
+                    if (condition.isSatisfied()) {
+                        result.set(true);
+                        valueSet = true;
+                    }
+                }
+            }
+        };
+
+        future = executorService.scheduleAtFixedRate(
+                command, 0, 50, TimeUnit.MILLISECONDS
+        );
+
+
+        try {
+            future.get(2, TimeUnit.SECONDS);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+            future.cancel(true);
+        }
+
+        return result.get();
     }
 
     private interface Condition {
-	boolean isSatisfied();
+        boolean isSatisfied();
     }
 
     @Rule
@@ -135,27 +169,27 @@ public abstract class AbstractParallelRunnerTest {
     private static volatile long test2Last = -1;
 
     @Test
-    @PerfTest(duration = 2000, threads = 3, timer = ConstantTimer.class, timerParams = { 1200 })
+    @PerfTest(duration = 2000, threads = 3, timer = ConstantTimer.class, timerParams = {1200})
     public void test1() throws Exception {
-	long currentTime = System.currentTimeMillis();
-	if (test1First == -1) {
-	    test1First = currentTime;
-	}
-	test1Last = currentTime;
-	System.out.println("test1 - " + Thread.currentThread() + " - "
-		+ (currentTime - Math.min(test1First, test2First)));
+        long currentTime = System.currentTimeMillis();
+        if (test1First == -1) {
+            test1First = currentTime;
+        }
+        test1Last = currentTime;
+        System.out.println("test1 - " + Thread.currentThread() + " - "
+                + (currentTime - Math.min(test1First, test2First)));
     }
 
     @Test
-    @PerfTest(duration = 3000, threads = 2, timer = ConstantTimer.class, timerParams = { 700 })
+    @PerfTest(duration = 3000, threads = 2, timer = ConstantTimer.class, timerParams = {700})
     public void test2() throws Exception {
-	long currentTime = System.currentTimeMillis();
-	if (test2First == -1) {
-	    test2First = currentTime;
-	}
-	test2Last = currentTime;
-	System.out.println("test2 - " + Thread.currentThread() + " - "
-		+ (currentTime - Math.min(test1First, test2First)));
+        long currentTime = System.currentTimeMillis();
+        if (test2First == -1) {
+            test2First = currentTime;
+        }
+        test2Last = currentTime;
+        System.out.println("test2 - " + Thread.currentThread() + " - "
+                + (currentTime - Math.min(test1First, test2First)));
     }
 
     @Test
@@ -164,7 +198,7 @@ public abstract class AbstractParallelRunnerTest {
 
     @AfterClass
     public static void verifyParallelExecution() {
-	assertTrue((test1First <= test2First && test2First <= test1Last)
-		|| (test2First <= test1First && test1First <= test2Last));
+        assertTrue((test1First <= test2First && test2First <= test1Last)
+                || (test2First <= test1First && test1First <= test2Last));
     }
 }

@@ -22,16 +22,16 @@
 
 package com.github.javatlacati.contiperf.junit;
 
+import org.junit.AfterClass;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-
-import org.junit.AfterClass;
 
 /**
  * Tests the {@link ParallelRunner}.<br>
  * <br>
  * Created: 23.01.2014 12:20:35
- * 
+ *
  * @since 2.4.0
  * @author Lucas Pouzac
  */
