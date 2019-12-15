@@ -140,7 +140,7 @@ public class ContiPerfRule implements MethodRule {
 	    this.context = context;
 	}
 	if (suite != null) {
-	    Class<? extends Object> suiteClass = suite.getClass();
+	    Class<?> suiteClass = suite.getClass();
 	    this.defaultExecutionConfig = configurePerfTest(
 		    ContiPerfUtil.annotationOfClass(suiteClass, PerfTest.class),
 		    suiteClass.getName());

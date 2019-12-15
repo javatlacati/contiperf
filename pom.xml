@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.javatlacati</groupId>
@@ -9,8 +10,8 @@
     <name>databene ContiPerf</name>
     <url>https://github.com/javatlacati/contiperf</url>
     <description>
-    	ContiPerf is an open source testing utility that enables the user to easily
-    	convert JUnit 4 test cases into performance tests.
+        ContiPerf is an open source testing utility that enables the user to easily
+        convert JUnit 4 test cases into performance tests.
     </description>
 
     <issueManagement>
@@ -57,8 +58,8 @@
         <url>https://github.com/javatlacati/contiperf</url>
         <connection>scm:git:git://github.com/javatlacati/contiperf.git</connection>
         <developerConnection>scm:git:git@github.com:javatlacati/contiperf.git</developerConnection>
-      <tag>contiperf-2.4.4-SNAPSHOT</tag>
-  </scm>
+        <tag>contiperf-2.4.4-SNAPSHOT</tag>
+    </scm>
 
     <developers>
         <developer>
@@ -94,7 +95,7 @@
     </developers>
 
     <properties>
-        <version.junit>4.12</version.junit>
+        <junit5.vintage.version>4.12.3</junit5.vintage.version>
         <version.wagon-ftp>1.0-alpha-6</version.wagon-ftp>
         <version.maven-resources-plugin>2.6</version.maven-resources-plugin>
         <version.maven-site-plugin>3.3</version.maven-site-plugin>
@@ -108,12 +109,17 @@
     </properties>
 
     <dependencies>
-
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${version.junit}</version>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit5.vintage.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.2.0</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
@@ -217,7 +223,7 @@
                 <version>${version.maven-javadoc-plugin}</version>
                 <configuration>
                     <encoding>${encoding}</encoding>
-                    <source>7</source> 
+                    <source>7</source>
                 </configuration>
                 <executions>
                     <execution>
@@ -256,20 +262,20 @@
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-gpg-plugin</artifactId>-->
-<!--                <version>1.5</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>sign-artifacts</id>-->
-<!--                        <phase>verify</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>sign</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <!--            <plugin>-->
+            <!--                <groupId>org.apache.maven.plugins</groupId>-->
+            <!--                <artifactId>maven-gpg-plugin</artifactId>-->
+            <!--                <version>1.5</version>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <id>sign-artifacts</id>-->
+            <!--                        <phase>verify</phase>-->
+            <!--                        <goals>-->
+            <!--                            <goal>sign</goal>-->
+            <!--                        </goals>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>

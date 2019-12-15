@@ -87,7 +87,7 @@ public class CounterRepository {
 				counters.values());
         Collections.sort(sortedCounters, new Comparator<LatencyCounter>() {
             public int compare(LatencyCounter c1, LatencyCounter c2) {
-                return -new Long(c1.totalLatency()).compareTo(c2.totalLatency());
+                return -Long.valueOf(c1.totalLatency()).compareTo(c2.totalLatency());
             }
         });
         for (LatencyCounter counter : sortedCounters) {
