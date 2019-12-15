@@ -77,7 +77,7 @@ import org.junit.runners.model.Statement;
  * </pre>
  *
  * For enabling different test settings, the invocation count values can be
- * configured in a properties file <code>contiperf.properties</code> which
+ * configured in a properties file {@code contiperf.properties} which
  * assigns the invocation count to the fully qualified method name, e.g.
  * 
  * <pre>
@@ -88,7 +88,7 @@ import org.junit.runners.model.Statement;
  * If the properties file exists, it overrides the annotation values.
  *
  * By default, the execution times are written to the CSV file
- * <code>target/contiperf/contiperf.log</code>. They have four columns, listing
+ * {@code target/contiperf/contiperf.log}. They have four columns, listing
  * the
  * <ol>
  * <li>fully qualified method name</li>
@@ -99,7 +99,7 @@ import org.junit.runners.model.Statement;
  *
  * For reusing integration tests as performance tests, you can suppress
  * ContiPerf execution by setting the System property
- * <code>contiperf.active=false</code>.
+ * {@code contiperf.active=false}.
  * <br>
  * <br>
  * Created: 12.10.2009 07:36:02

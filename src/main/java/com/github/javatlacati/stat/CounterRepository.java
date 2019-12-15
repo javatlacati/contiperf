@@ -38,9 +38,9 @@ import java.util.Set;
  * available to clients.<br>
  * <br>
  * Created: 14.01.2011 11:26:09
- * 
- * @since 2.0.0
+ *
  * @author Volker Bergmann
+ * @since 2.0.0
  */
 public class CounterRepository {
 
@@ -52,106 +52,106 @@ public class CounterRepository {
     private static final CounterRepository INSTANCE = new CounterRepository();
 
     private CounterRepository() {
-	counters = new HashMap<String, LatencyCounter>();
+        counters = new HashMap<>();
     }
 
     public static CounterRepository getInstance() {
-	return INSTANCE;
+        return INSTANCE;
     }
 
     // CounterRepository interface
     // -------------------------------------------------------------------------------------
 
     public void addSample(String name, int latency) {
-	LatencyCounter counter = getOrCreateCounter(name);
-	counter.addSample(latency, null);
+        LatencyCounter counter = getOrCreateCounter(name);
+        counter.addSample(latency, null);
     }
 
     public LatencyCounter getCounter(String name) {
-	return counters.get(name);
+        return counters.get(name);
     }
 
     public Set<Map.Entry<String, LatencyCounter>> getCounters() {
-	return counters.entrySet();
+        return counters.entrySet();
     }
 
     public void clear() {
-	counters.clear();
+        counters.clear();
     }
 
     public void printSummary() {
-	DecimalFormat df = new DecimalFormat("0.0",
-		DecimalFormatSymbols.getInstance(Locale.US));
-	List<String[]> list = new ArrayList<String[]>(counters.size());
-	List<LatencyCounter> sortedCounters = new ArrayList<LatencyCounter>(
-		counters.values());
-	Collections.sort(sortedCounters, new Comparator<LatencyCounter>() {
-	    public int compare(LatencyCounter c1, LatencyCounter c2) {
-		return -new Long(c1.totalLatency()).compareTo(c2.totalLatency());
-	    }
-	});
-	for (LatencyCounter counter : sortedCounters) {
-	    list.add(new String[] { counter.getName() + ":",
-		    counter.totalLatency() + " ms total,",
-		    counter.sampleCount() + " inv,",
-		    df.format(counter.averageLatency()) + " ms/inv (avg.)" });
-	}
-	printSummaryTable(list);
+        DecimalFormat df = new DecimalFormat("0.0",
+                DecimalFormatSymbols.getInstance(Locale.US));
+        List<String[]> list = new ArrayList<>(counters.size());
+        List<LatencyCounter> sortedCounters = new ArrayList<>(
+				counters.values());
+        Collections.sort(sortedCounters, new Comparator<LatencyCounter>() {
+            public int compare(LatencyCounter c1, LatencyCounter c2) {
+                return -new Long(c1.totalLatency()).compareTo(c2.totalLatency());
+            }
+        });
+        for (LatencyCounter counter : sortedCounters) {
+            list.add(new String[]{counter.getName() + ":",
+                    counter.totalLatency() + " ms total,",
+                    counter.sampleCount() + " inv,",
+                    df.format(counter.averageLatency()) + " ms/inv (avg.)"});
+        }
+        printSummaryTable(list);
     }
 
     // helper methods
     // --------------------------------------------------------------------------------------------------
 
     private LatencyCounter getOrCreateCounter(String name) {
-	LatencyCounter counter = getCounter(name);
-	if (counter == null) {
-	    counter = createCounter(name);
-	}
-	return counter;
+        LatencyCounter counter = getCounter(name);
+        if (counter == null) {
+            counter = createCounter(name);
+        }
+        return counter;
     }
 
     private synchronized LatencyCounter createCounter(String name) {
-	LatencyCounter counter = getCounter(name);
-	if (counter == null) {
-	    counter = new LatencyCounter(name);
-	    counters.put(name, counter);
-	}
-	return counter;
+        LatencyCounter counter = getCounter(name);
+        if (counter == null) {
+            counter = new LatencyCounter(name);
+            counters.put(name, counter);
+        }
+        return counter;
     }
 
     private void printSummaryTable(List<String[]> list) {
-	// determine column widths
-	int[] widths = new int[4];
-	for (int col = 0; col < 4; col++) {
-	    int width = 0;
-	    for (int row = 0; row < list.size(); row++) {
-		width = Math.max(width, list.get(row)[col].length());
-	    }
-	    widths[col] = width;
-	}
-	// print rows
-	for (int row = 0; row < list.size(); row++) {
-	    for (int col = 0; col < 4; col++) {
-		String text = list.get(row)[col];
-		if (col > 0) {
-		    pad(widths[col] - text.length());
-		    System.out.print(text);
-		} else {
-		    System.out.print(text);
-		    pad(widths[col] - text.length());
-		}
-		if (col < 3) {
-		    System.out.print(' ');
-		}
-	    }
-	    System.out.println();
-	}
+        // determine column widths
+        int[] widths = new int[4];
+        for (int col = 0; col < 4; col++) {
+            int width = 0;
+            for (String[] strings : list) {
+                width = Math.max(width, strings[col].length());
+            }
+            widths[col] = width;
+        }
+        // print rows
+        for (String[] strings : list) {
+            for (int col = 0; col < 4; col++) {
+                String text = strings[col];
+                if (col > 0) {
+                    pad(widths[col] - text.length());
+                    System.out.print(text);
+                } else {
+                    System.out.print(text);
+                    pad(widths[col] - text.length());
+                }
+                if (col < 3) {
+                    System.out.print(' ');
+                }
+            }
+            System.out.println();
+        }
     }
 
     private void pad(int count) {
-	for (int i = 0; i < count; i++) {
-	    System.out.print(' ');
-	}
+        for (int i = 0; i < count; i++) {
+            System.out.print(' ');
+        }
     }
 
 }

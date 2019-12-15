@@ -26,6 +26,7 @@ import java.io.Closeable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.github.javatlacati.contiperf.Clock;
@@ -119,7 +120,7 @@ public class ContiPerfUtil {
 	int max = annotation.max();
 	int totalTime = annotation.totalTime();
 
-	List<PercentileRequirement> percTmp = new ArrayList<PercentileRequirement>();
+	List<PercentileRequirement> percTmp = new ArrayList<>();
 	int median = annotation.median();
 	if (median > 0) {
 	    percTmp.add(new PercentileRequirement(50, median));
@@ -139,9 +140,7 @@ public class ContiPerfUtil {
 
 	PercentileRequirement[] customPercs = parsePercentiles(annotation
 		.percentiles());
-	for (PercentileRequirement percentile : customPercs) {
-	    percTmp.add(percentile);
-	}
+		Collections.addAll(percTmp, customPercs);
 	PercentileRequirement[] percs = new PercentileRequirement[percTmp
 		.size()];
 	percTmp.toArray(percs);

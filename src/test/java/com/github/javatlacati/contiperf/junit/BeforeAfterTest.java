@@ -22,6 +22,7 @@
 
 package com.github.javatlacati.contiperf.junit;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import com.github.javatlacati.contiperf.PerfTest;
@@ -64,7 +65,7 @@ public class BeforeAfterTest {
     public void test() {
 	assertTrue("method before() may only be called once, but was called "
 		+ beforeCount + " times", beforeCount == 1);
-	assertTrue(afterCount == 0);
+        assertEquals(0, afterCount);
     }
 
 }

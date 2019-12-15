@@ -43,8 +43,8 @@ public class ListReportModule extends AbstractReportModule {
     private List<InvocationSummary> summaries;
 
     public ListReportModule() {
-	this.invocations = new ArrayList<InvocationLog>();
-	this.summaries = new ArrayList<InvocationSummary>();
+	this.invocations = new ArrayList<>();
+	this.summaries = new ArrayList<>();
     }
 
     @Override

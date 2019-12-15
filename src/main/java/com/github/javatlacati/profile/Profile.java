@@ -50,7 +50,7 @@ public class Profile {
 	this.parent = parent;
 	this.name = name;
 	this.counter = new LatencyCounter(name);
-	this.subProfiles = new HashMap<String, Profile>();
+	this.subProfiles = new HashMap<>();
     }
 
     public String getName() {

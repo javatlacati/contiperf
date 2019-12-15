@@ -28,9 +28,9 @@ import com.github.javatlacati.contiperf.util.ContiPerfUtil;
  * Defines performance requirements on a test.<br>
  * <br>
  * Created: 18.10.2009 06:21:57
- * 
- * @since 1.0
+ *
  * @author Volker Bergmann
+ * @since 1.0
  */
 public class PerformanceRequirement {
 
@@ -43,70 +43,70 @@ public class PerformanceRequirement {
     private PercentileRequirement[] percentiles;
 
     public PerformanceRequirement() {
-	this(-1, -1, -1, new PercentileRequirement[0], -1, 0);
+        this(-1, -1, -1, new PercentileRequirement[0], -1, 0);
     }
 
     public PerformanceRequirement(int average, int max, int totalTime,
-	    PercentileRequirement[] percentiles, int throughput,
-	    double allowedErrorsRate) {
-	this.average = average;
-	this.max = max;
-	this.totalTime = totalTime;
-	this.percentiles = percentiles;
-	this.throughput = throughput;
-	this.allowedErrorsRate = allowedErrorsRate;
+                                  PercentileRequirement[] percentiles, int throughput,
+                                  double allowedErrorsRate) {
+        this.average = average;
+        this.max = max;
+        this.totalTime = totalTime;
+        this.percentiles = percentiles;
+        this.throughput = throughput;
+        this.allowedErrorsRate = allowedErrorsRate;
     }
 
     public int getAverage() {
-	return average;
+        return average;
     }
 
     public int getMax() {
-	return max;
+        return max;
     }
 
     public void setMax(int max) {
-	this.max = max;
+        this.max = max;
     }
 
     public int getTotalTime() {
-	return totalTime;
+        return totalTime;
     }
 
     public PercentileRequirement[] getPercentileRequirements() {
-	return percentiles;
+        return percentiles;
     }
 
     public void setPercentileValues(PercentileRequirement[] percentiles) {
-	this.percentiles = percentiles;
+        this.percentiles = percentiles;
     }
 
     public int getThroughput() {
-	return throughput;
+        return throughput;
     }
 
     public void setPercentiles(String percentilesSpec) {
-	setPercentileValues(ContiPerfUtil.parsePercentiles(percentilesSpec));
+        setPercentileValues(ContiPerfUtil.parsePercentiles(percentilesSpec));
     }
 
     public double getAllowedErrorsRate() {
-	return allowedErrorsRate;
+        return allowedErrorsRate;
     }
 
     public boolean isAllowedError() {
 
-	return (allowedErrorsRate > 0.0);
+        return (allowedErrorsRate > 0.0);
     }
 
     @Override
     public String toString() {
-	StringBuilder builder = new StringBuilder();
-	builder.append("average=").append(average);
-	builder.append(", max=").append(max);
-	builder.append(", totalTime=").append(totalTime);
-	builder.append(", throughput=").append(throughput);
-	builder.append(", percentiles=").append(percentiles);
-	return builder.toString();
+        StringBuilder builder = new StringBuilder("average=");
+        builder.append(average);
+        builder.append(", max=").append(max);
+        builder.append(", totalTime=").append(totalTime);
+        builder.append(", throughput=").append(throughput);
+        builder.append(", percentiles=").append(percentiles);
+        return builder.toString();
     }
 
 }

@@ -34,5 +34,5 @@ import java.io.Closeable;
  * @author Volker Bergmann
  */
 public interface InvocationRunner extends Runnable, Closeable {
-    public void close();
+    void close();
 }

@@ -28,16 +28,15 @@ import static org.junit.Assert.assertTrue;
 import com.github.javatlacati.stat.CounterRepository;
 import com.github.javatlacati.stat.LatencyCounter;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
  * Tests the {@link StopWatch}.<br>
  * <br>
  * Created: 14.01.2011 11:33:37
- * 
- * @since 1.08
+ *
  * @author Volker Bergmann
+ * @since 1.08
  */
 public class StopWatchTest {
 
@@ -45,74 +44,74 @@ public class StopWatchTest {
 
     @After
     public void tearDown() {
-	CounterRepository.getInstance().clear();
+        CounterRepository.getInstance().clear();
     }
 
     @Test
     public void testSingleCall() throws InterruptedException {
-	sleepTimed(50);
-	Assert.assertEquals(1, getCounter().sampleCount());
+        sleepTimed(50);
+        assertEquals(1, getCounter().sampleCount());
     }
 
     @Test
     public void testSubsequentCalls() throws InterruptedException {
-	sleepTimed(50);
-	sleepTimed(50);
-	sleepTimed(50);
-	LatencyCounter counter = getCounter();
-	assertEquals(3, counter.sampleCount());
-	assertTrue(counter.minLatency() >= 39);
-	assertTrue(counter.minLatency() < 100);
-	assertTrue(counter.averageLatency() >= 39);
-	assertTrue(counter.averageLatency() < 100);
+        sleepTimed(50);
+        sleepTimed(50);
+        sleepTimed(50);
+        LatencyCounter counter = getCounter();
+        assertEquals(3, counter.sampleCount());
+        assertTrue(counter.minLatency() >= 39);
+        assertTrue(counter.minLatency() < 100);
+        assertTrue(counter.averageLatency() >= 39);
+        assertTrue(counter.averageLatency() < 100);
     }
 
     @Test
     public void testParallelCalls() throws InterruptedException {
-	Thread[] threads = new Thread[20];
-	for (int i = 0; i < threads.length; i++) {
-	    threads[i] = new Thread() {
-		@Override
-		public void run() {
-		    try {
-			for (int i = 0; i < 20; i++) {
-			    sleepTimed(50);
-			}
-		    } catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		    }
+        Thread[] threads = new Thread[20];
+        for (int i = 0; i < threads.length; i++) {
+            threads[i] = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        for (int i = 0; i < 20; i++) {
+                            sleepTimed(50);
+                        }
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            };
+        }
+		for (Thread thread : threads) {
+			thread.start();
 		}
-	    };
-	}
-	for (int i = 0; i < threads.length; i++) {
-	    threads[i].start();
-	}
-	for (int i = 0; i < threads.length; i++) {
-	    threads[i].join();
-	}
-	LatencyCounter counter = getCounter();
-	assertEquals(400, counter.sampleCount());
-	assertTrue(counter.minLatency() >= 39);
-	assertTrue(counter.minLatency() < 100);
-	assertTrue(counter.averageLatency() >= 39);
-	assertTrue(counter.averageLatency() < 100);
+		for (Thread thread : threads) {
+			thread.join();
+		}
+        LatencyCounter counter = getCounter();
+        assertEquals(400, counter.sampleCount());
+        assertTrue(counter.minLatency() >= 39);
+        assertTrue(counter.minLatency() < 100);
+        assertTrue(counter.averageLatency() >= 39);
+        assertTrue(counter.averageLatency() < 100);
     }
 
     @Test(expected = RuntimeException.class)
     public void testMultiStop() {
-	StopWatch watch = new StopWatch(NAME);
-	watch.stop();
-	watch.stop();
+        StopWatch watch = new StopWatch(NAME);
+        watch.stop();
+        watch.stop();
     }
 
     private void sleepTimed(int delay) throws InterruptedException {
-	StopWatch watch = new StopWatch(NAME);
-	Thread.sleep(delay);
-	watch.stop();
+        StopWatch watch = new StopWatch(NAME);
+        Thread.sleep(delay);
+        watch.stop();
     }
 
     private LatencyCounter getCounter() {
-	return CounterRepository.getInstance().getCounter(NAME);
+        return CounterRepository.getInstance().getCounter(NAME);
     }
 
 }

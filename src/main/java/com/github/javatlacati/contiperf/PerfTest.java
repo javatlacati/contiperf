@@ -43,7 +43,7 @@ import com.github.javatlacati.contiperf.timer.RandomTimer;
  * <h2>Count-based execution</h2> In count-based execution, the total number of
  * test executions is stated and ContiPerf runs until the number has been
  * reached - however slow or fast this may be. Example:
- * <code>@PerfTest(invocations = 3000, threads = 10)</code> advises ContiPerf to
+ * {@code @PerfTest(invocations = 3000, threads = 10)} advises ContiPerf to
  * execute the annotated test method 3000 times with up to 10 threads in
  * parallel
  * 
@@ -57,8 +57,8 @@ import com.github.javatlacati.contiperf.timer.RandomTimer;
  * They incur a wait time between invocations. ContiPerf comes with some
  * predefined timers ({@link ConstantTimer}, {@link RandomTimer} and
  * {@link CumulatedTimer}) and you can easily define custom ones. Example:
- * <code>@PerfTest(invocations = 1000, threads = 10, timer = RandomTimer.class,
- * timerParams = { 30, 80 })</code> causes ContiPerf to wait for 30 to 80
+ * {@code @PerfTest(invocations = 1000, threads = 10, timer = RandomTimer.class,
+ * timerParams = { 30, 80 })} causes ContiPerf to wait for 30 to 80
  * milliseconds between the test invocations of each thread.
  * 
  * <h3>Ramp-up and warm-up time</h3> If the tested component or system would be
@@ -70,7 +70,7 @@ import com.github.javatlacati.contiperf.timer.RandomTimer;
  * scenarios, the {@link #duration()} always specifies the time running with
  * full number of threads, ramp-up times are always added to the duration.
  * Example:
- * <code>@PerfTest(threads = 10, duration = 60000, rampUp = 1000)</code> makes
+ * {@code @PerfTest(threads = 10, duration = 60000, rampUp = 1000)} makes
  * ContiPerf start with one thread, add a new thread each second until 10
  * threads are reached (which is the case after 9 seconds) and then runs the
  * test at the full number of threads for 60 seconds. Consequentially, the total
@@ -79,7 +79,7 @@ import com.github.javatlacati.contiperf.timer.RandomTimer;
  * to tell ContiPerf after which amount of time it should begin to measure and
  * validate test execution. For the example above, a minimum rampUp time of 9
  * seconds is useful:
- * <code>@PerfTest(threads = 10, duration = 60000, rampUp = 1000, warmUp = 9000)</code>
+ * {@code @PerfTest(threads = 10, duration = 60000, rampUp = 1000, warmUp = 9000)}
  * <br>
  * <br>
  * Created: 14.10.2009 14:41:18

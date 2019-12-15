@@ -504,8 +504,7 @@ public class HtmlReportModule extends AbstractReportModule {
 	if (number == null) {
 	    return "";
 	}
-	StringBuilder builder = new StringBuilder();
-	builder.append(lf.format(number));
+	StringBuilder builder = new StringBuilder(lf.format(number));
 	if (unit != null) {
 	    builder.append(' ').append(unit);
 	}

@@ -52,8 +52,8 @@ public final class LatencyCounter {
     private long sampleCount;
     private long totalLatency;
 
-    private List<PerfTestExecutionError> assertionErrors = new ArrayList<PerfTestExecutionError>(
-	    0);
+    private List<PerfTestExecutionError> assertionErrors = new ArrayList<>(
+			0);
 
     public LatencyCounter(String name) {
 	this(name, SystemClock.NAME, 1000);

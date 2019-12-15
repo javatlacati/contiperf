@@ -45,7 +45,7 @@ public class ProfilerTest {
 	Profiler profiler = new Profiler("test", 100, "ds");
 
 	// when
-	List<String> path = new ArrayList<String>();
+	List<String> path = new ArrayList<>();
 	profiler.addSample(path, 1000);
 	path.add("sub1");
 	profiler.addSample(path, 200);

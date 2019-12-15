@@ -22,12 +22,10 @@
 
 package com.github.javatlacati.stat;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.After;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * Tests the {@link CounterRepository}.<br>
@@ -57,9 +55,7 @@ public class CounterRepositoryTest {
 	assertNotNull(
 		"Counter should have been defined after calling addSample()",
 		counter);
-	assertTrue(
-		"repository is expected to return the same counter instance on subsequent calls to getCounter()",
-		counter == repository.getCounter(NAME));
+		assertSame("repository is expected to return the same counter instance on subsequent calls to getCounter()", counter, repository.getCounter(NAME));
 	repository.clear();
 	assertNull(
 		"After calling clear(), the repository should have no counters",

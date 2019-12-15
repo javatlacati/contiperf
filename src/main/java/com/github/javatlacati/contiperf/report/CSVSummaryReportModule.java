@@ -41,21 +41,21 @@ import com.github.javatlacati.stat.LatencyCounter;
  * Writes summary information of the ContiPerf to a CSV file.<br>
  * <br>
  * Created: 16.01.2011 11:03:46
- * 
- * @since 2.0.0
+ *
  * @author Volker Bergmann
+ * @since 2.0.0
  */
 public class CSVSummaryReportModule extends AbstractReportModule {
 
     private static final String LINE_SEPARATOR = System
-	    .getProperty("line.separator");
+            .getProperty("line.separator");
 
-    private static Set<File> usedFiles = new HashSet<File>();
+    private static Set<File> usedFiles = new HashSet<>();
 
     private File file;
 
     public CSVSummaryReportModule() {
-	this.file = null;
+        this.file = null;
     }
 
     // ReportModule interface implementation
@@ -63,82 +63,82 @@ public class CSVSummaryReportModule extends AbstractReportModule {
 
     @Override
     public String getReportReferenceLabel(String serviceId) {
-	return (serviceId == null ? "CSV Summary" : null);
+        return (serviceId == null ? "CSV Summary" : null);
     }
 
     @Override
     public String getReportReference(String serviceId) {
-	return (serviceId == null ? filename() : null);
+        return (serviceId == null ? filename() : null);
     }
 
     @Override
     public void starting(String serviceId) {
-	synchronized (usedFiles) {
-	    file = new File(context.getReportFolder(), filename());
-	    if (!usedFiles.contains(file) && file.exists()) {
-		if (!file.delete()) {
-		    throw new RuntimeException(
-			    "Previous file version could not be deleted: "
-				    + file);
-		}
-		usedFiles.add(file);
-	    }
-	    if (!file.exists()) {
-		writeHeader(serviceId);
-	    }
-	}
+        synchronized (usedFiles) {
+            file = new File(context.getReportFolder(), filename());
+            if (!usedFiles.contains(file) && file.exists()) {
+                if (!file.delete()) {
+                    throw new RuntimeException(
+                            "Previous file version could not be deleted: "
+                                    + file);
+                }
+                usedFiles.add(file);
+            }
+            if (!file.exists()) {
+                writeHeader(); //TODO: perhaps add serviceId
+            }
+        }
     }
 
     @Override
     public void completed(String serviceId, LatencyCounter[] counters,
                           ExecutionConfig executionConfig, PerformanceRequirement requirement) {
-	writeStats(serviceId, counters);
+        writeStats(serviceId, counters);
     }
 
     // helper methods
     // --------------------------------------------------------------------------------------------------
 
-    private void writeHeader(String serviceId) {
-	OutputStream out = null;
-	try {
-	    out = new FileOutputStream(file, true);
-	    String line = "serviceId,startTime,duration,invocations,min,average,median,90%,95%,99%,max"
-		    + LINE_SEPARATOR;
-	    out.write(line.getBytes());
-	} catch (IOException e) {
-	    e.printStackTrace();
-	} finally {
-	    ContiPerfUtil.close(out);
-	}
+    private void writeHeader() {
+        OutputStream out = null;
+        try {
+            out = new FileOutputStream(file, true);
+            String line = "serviceId,startTime,duration,invocations,min,average,median,90%,95%,99%,max"
+                    + LINE_SEPARATOR;
+            out.write(line.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            ContiPerfUtil.close(out);
+        }
     }
 
     private void writeStats(String serviceId, LatencyCounter[] counters) {
-	OutputStream out = null;
-	try {
-	    out = new FileOutputStream(file, true);
-	    DecimalFormat decForm = new DecimalFormat("0.#",
-		    DecimalFormatSymbols.getInstance(Locale.US));
-	    decForm.setGroupingUsed(false);
-	    LatencyCounter mainCounter = counters[0];
-	    String avg = decForm.format(mainCounter.averageLatency());
-	    String message = serviceId + ',' + mainCounter.getStartTime() + ','
-		    + mainCounter.duration() + ',' + mainCounter.sampleCount()
-		    + ',' + mainCounter.minLatency() + ',' + avg + ','
-		    + mainCounter.percentileLatency(50) + ','
-		    + mainCounter.percentileLatency(90) + ','
-		    + mainCounter.percentileLatency(95) + ','
-		    + mainCounter.percentileLatency(99) + ','
-		    + mainCounter.maxLatency() + LINE_SEPARATOR;
-	    out.write(message.getBytes());
-	} catch (IOException e) {
-	    e.printStackTrace();
-	} finally {
-	    ContiPerfUtil.close(out);
-	}
+        OutputStream out = null;
+        try {
+            out = new FileOutputStream(file, true);
+            DecimalFormat decForm = new DecimalFormat("0.#",
+                    DecimalFormatSymbols.getInstance(Locale.US));
+            decForm.setGroupingUsed(false);
+            LatencyCounter mainCounter = counters[0];
+            String avg = decForm.format(mainCounter.averageLatency());
+            String message = serviceId + ',' + mainCounter.getStartTime() + ','
+                    + mainCounter.duration() + ',' + mainCounter.sampleCount()
+                    + ',' + mainCounter.minLatency() + ',' + avg + ','
+                    + mainCounter.percentileLatency(50) + ','
+                    + mainCounter.percentileLatency(90) + ','
+                    + mainCounter.percentileLatency(95) + ','
+                    + mainCounter.percentileLatency(99) + ','
+                    + mainCounter.maxLatency() + LINE_SEPARATOR;
+            out.write(message.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            ContiPerfUtil.close(out);
+        }
     }
 
     private String filename() {
-	return "summary.csv";
+        return "summary.csv";
     }
 
 }

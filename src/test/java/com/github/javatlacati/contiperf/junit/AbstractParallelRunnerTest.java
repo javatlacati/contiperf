@@ -122,7 +122,7 @@ public abstract class AbstractParallelRunnerTest {
     }
 
     private interface Condition {
-	public boolean isSatisfied();
+	boolean isSatisfied();
     }
 
     @Rule

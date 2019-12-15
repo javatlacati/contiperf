@@ -59,7 +59,7 @@ public class JUnitReportContext extends ReportContext {
 
     @SuppressWarnings("deprecation")
     private static List<ReportModule> parseReportModules(Object suite) {
-	List<ReportModule> modules = new ArrayList<ReportModule>();
+	List<ReportModule> modules = new ArrayList<>();
 	if (suite != null) {
 	    for (Field field : suite.getClass().getFields()) {
 		try {

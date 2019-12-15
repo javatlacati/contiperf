@@ -46,11 +46,11 @@ public class ParallelScheduler implements RunnerScheduler {
 
     private final CompletionService<String> completionService;
 
-    private Queue<Future<String>> tasks = new LinkedList<Future<String>>();
+    private Queue<Future<String>> tasks = new LinkedList<>();
 
     public ParallelScheduler(ExecutorService executor) {
 	this.executor = executor;
-	this.completionService = new ExecutorCompletionService<String>(executor);
+	this.completionService = new ExecutorCompletionService<>(executor);
     }
 
     public void schedule(final Runnable childStatement) {

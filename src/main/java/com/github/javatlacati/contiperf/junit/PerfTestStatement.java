@@ -75,21 +75,19 @@ final class PerfTestStatement extends Statement {
 	Clock[] clocks = config.getClocks();
 	PerformanceTracker tracker = new PerformanceTracker(invoker, config,
 		requirement, context, clocks);
-	InvocationRunner runner = createRunner(tracker);
-	try {
-	    runner.run();
-	    if (!tracker.isTrackingStarted() && config.getWarmUp() > 0) {
-		throw new PerfTestExecutionError(
-			"Test finished before warm-up period ("
-				+ config.getWarmUp() + " ms) was over");
-	    }
-	} finally {
-	    if (tracker.isTrackingStarted()) {
-		tracker.stopTracking();
-	    }
-	    runner.close();
-	    tracker.clear();
-	}
+		try (InvocationRunner runner = createRunner(tracker)) {
+			runner.run();
+			if (!tracker.isTrackingStarted() && config.getWarmUp() > 0) {
+				throw new PerfTestExecutionError(
+						"Test finished before warm-up period ("
+								+ config.getWarmUp() + " ms) was over");
+			}
+		} finally {
+			if (tracker.isTrackingStarted()) {
+				tracker.stopTracking();
+			}
+			tracker.clear();
+		}
     }
 
     private InvocationRunner createRunner(PerformanceTracker tracker) {

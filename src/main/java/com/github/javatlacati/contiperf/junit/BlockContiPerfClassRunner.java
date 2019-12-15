@@ -100,7 +100,7 @@ public class BlockContiPerfClassRunner extends BlockJUnit4ClassRunner {
     @Override
     protected List<MethodRule> rules(Object test) {
 	boolean configured = false;
-	List<MethodRule> rules = new ArrayList<MethodRule>();
+	List<MethodRule> rules = new ArrayList<>();
 	for (FrameworkField each : ruleFields()) {
 	    MethodRule targetRule = createRule(test, each);
 	    if (targetRule instanceof ContiPerfRule) {
