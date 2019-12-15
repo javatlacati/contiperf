@@ -21,10 +21,10 @@ You need at least Java 5 and JUnit 4.7 to use ContiPerf
 
 ContiPerf is Open Source and you can choose among the following licenses:
 
-  * [Apache License 2.0](Apache_License-2.0.txt)
-  * [Lesser GNU Public License (LGPL) 3.0](lgpl-version3.txt)
-  * [Eclipse Public License 1.0](epl-v10.html)
-  * [BSD License](bsd-license.txt)
+* [Apache License 2.0](Apache_License-2.0.txt)
+* [Lesser GNU Public License (LGPL) 3.0](lgpl-version3.txt)
+* [Eclipse Public License 1.0](epl-v10.html)
+* [BSD License](bsd-license.txt)
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjavatlacati%2Fcontiperf.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjavatlacati%2Fcontiperf?ref=badge_large)
 
