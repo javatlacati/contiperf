@@ -32,8 +32,8 @@ import static org.hamcrest.core.Is.is;
  * <br>
  * Created: 23.01.2014 12:20:35
  *
- * @since 2.4.0
  * @author Lucas Pouzac
+ * @since 2.4.0
  */
 @Parallel(count = OverrideParallelRunnerTest.OVERRIDE_CONCURRENT_COUNT)
 public class OverrideParallelRunnerTest extends AbstractParallelRunnerTest {
@@ -42,7 +42,7 @@ public class OverrideParallelRunnerTest extends AbstractParallelRunnerTest {
 
     @AfterClass
     public static void assertTestThreadsSpawned() {
-	assertThat(threads.size(), is(OVERRIDE_CONCURRENT_COUNT));
+        assertThat(threads.size(), is(OVERRIDE_CONCURRENT_COUNT));
     }
 
     /**
@@ -50,7 +50,7 @@ public class OverrideParallelRunnerTest extends AbstractParallelRunnerTest {
      */
     @Override
     protected int getConcurrentCount() {
-	return OVERRIDE_CONCURRENT_COUNT;
+        return OVERRIDE_CONCURRENT_COUNT;
     }
 
 }

@@ -33,7 +33,10 @@ import org.junit.runner.RunWith;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.junit.Assert.assertTrue;
@@ -75,21 +78,21 @@ public abstract class AbstractParallelRunnerTest {
 
     @Test
     public void shouldRunInParallel4() throws TimeoutException,
-	    InterruptedException {
-	logCurrentThread();
+            InterruptedException {
+        logCurrentThread();
     }
 
     @Test
     public void shouldRunInParallel5() throws TimeoutException,
-	    InterruptedException {
-	logCurrentThread();
+            InterruptedException {
+        logCurrentThread();
     }
 
     void logCurrentThread() throws TimeoutException,
-	    InterruptedException {
-	Thread.sleep(200);
-	threads.add(Thread.currentThread().getName());
-	waitToForceCachedThreadPoolToCreateNewThread();
+            InterruptedException {
+        Thread.sleep(200);
+        threads.add(Thread.currentThread().getName());
+        waitToForceCachedThreadPoolToCreateNewThread();
     }
 
     private void waitToForceCachedThreadPoolToCreateNewThread()
@@ -112,45 +115,27 @@ public abstract class AbstractParallelRunnerTest {
     private static boolean success(final Condition condition)
             throws InterruptedException {
 
-        final ScheduledExecutorService executorService
-                = Executors.newSingleThreadScheduledExecutor();
-
+        final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+        final AtomicBoolean stopCommand = new AtomicBoolean(false);
         final AtomicBoolean result = new AtomicBoolean(false);
-
-        ScheduledFuture<?> future = null;
-
-        final ScheduledFuture<?> finalFuture = future; //variable for pointer holding
         final Runnable command = new Runnable() {
-            private boolean valueSet = false;
-
             @Override
             public void run() {
-                if (valueSet) {
-                    if (finalFuture != null) {
-                        finalFuture.cancel(true); // early return
-                    }
-                } else {
-                    if (condition.isSatisfied()) {
-                        result.set(true);
-                        valueSet = true;
-                    }
+                if (condition.isSatisfied()) {
+                    result.set(true);
+                    stopCommand.set(true);
                 }
             }
         };
-
-        future = executorService.scheduleAtFixedRate(
+        executorService.scheduleAtFixedRate(
                 command, 0, 50, TimeUnit.MILLISECONDS
         );
 
+        executorService.shutdown();
 
-        try {
-            future.get(2, TimeUnit.SECONDS);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (TimeoutException e) {
-            e.printStackTrace();
-            future.cancel(true);
-        }
+        executorService.awaitTermination(2, TimeUnit.SECONDS);
+
+        stopCommand.set(true);
 
         return result.get();
     }
