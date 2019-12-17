@@ -22,11 +22,11 @@
 
 package com.github.javatlacati.contiperf.report;
 
+import com.github.javatlacati.contiperf.report.LatencyDataSet.LabelInfo;
+import com.github.javatlacati.stat.LatencyCounter;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-
-import com.github.javatlacati.stat.LatencyCounter;
-import com.github.javatlacati.contiperf.report.LatencyDataSet.LabelInfo;
 
 /**
  * Formats the latency distribution of a {@link LatencyCounter} using the Google
@@ -58,17 +58,20 @@ public class GoogleLatencyRenderer {
         dataset.scaleY(80);
         try {
             StringBuilder builder = new StringBuilder(
-                    "https://chart.apis.google.com/chart?cht=lxy"); // xy line
-            // chart
-            builder.append("&chs=").append(width).append('x').append(height); // image
-            // size
+                    "https://chart.apis.google.com/chart?cht=lxy") // xy line
+                    .append("&chs=") // chart
+                    .append(width)
+                    .append('x')
+                    .append(height); // image size
             appendData(dataset, builder); // data definition
-            builder.append("&chxt=x"); // render x axis only
-            builder.append("&chxr=0,0,").append(dataset.getMaxX()); // x axis scale
+            builder.append("&chxt=x") // render x axis only
+                    .append("&chxr=0,0,").append(dataset.getMaxX()); // x axis scale
             // (#axis, min,
             // max, tick
             // spacing)
-            builder.append("&chds=0,").append(dataset.getMaxX()).append(",0,100"); // data
+            builder.append("&chds=0,")
+                    .append(dataset.getMaxX())
+                    .append(",0,100"); // data
             // scale
             // (min
             // x, max
@@ -89,7 +92,11 @@ public class GoogleLatencyRenderer {
     private void renderLabels(LatencyDataSet dataset, StringBuilder builder) {
         builder.append("&chm=B,FFE69B,0,0,0"); // fill
         for (LabelInfo label : dataset.getLabels()) {
-            builder.append("|A").append(label.text).append(",666666,0,").append(label.index).append(",15"); // labels
+            builder.append("|A")
+                    .append(label.text)
+                    .append(",666666,0,")
+                    .append(label.index)
+                    .append(",15"); // labels
         }
     }
 

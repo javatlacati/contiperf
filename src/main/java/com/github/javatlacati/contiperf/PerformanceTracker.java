@@ -22,13 +22,13 @@
 
 package com.github.javatlacati.contiperf;
 
-import java.io.PrintWriter;
-
-import com.github.javatlacati.stat.LatencyCounter;
 import com.github.javatlacati.contiperf.clock.SystemClock;
 import com.github.javatlacati.contiperf.report.ReportContext;
 import com.github.javatlacati.contiperf.report.ReportModule;
 import com.github.javatlacati.contiperf.util.InvokerProxy;
+import com.github.javatlacati.stat.LatencyCounter;
+
+import java.io.PrintWriter;
 
 /**
  * {@link InvokerProxy} that provides performance tracking features.<br>
@@ -60,8 +60,8 @@ public class PerformanceTracker extends InvokerProxy {
                               PerformanceRequirement requirement, ReportContext context,
                               Clock[] clocks) {
         super(target);
-        this.executionConfig = (executionConfig != null ? executionConfig
-                : new ExecutionConfig(0));
+        this.executionConfig = executionConfig != null ? executionConfig
+                : new ExecutionConfig(0);
         this.requirement = requirement;
         this.setContext(context);
         this.clocks = clocks;
@@ -80,9 +80,10 @@ public class PerformanceTracker extends InvokerProxy {
 
     public void startTracking() {
         reportStart();
-        int max = (requirement != null ? requirement.getMax() : -1);
-        this.counters = new LatencyCounter[clocks.length];
-        for (int i = 0; i < clocks.length; i++) {
+        int max = requirement != null ? requirement.getMax() : -1;
+        int length = clocks.length;
+        this.counters = new LatencyCounter[length];
+        for (int i = 0; i < length; i++) {
             LatencyCounter counter = new LatencyCounter(target.toString(),
                     clocks[i].getName(), max >= 0 ? max : 1000);
             this.counters[i] = counter;
@@ -213,12 +214,10 @@ public class PerformanceTracker extends InvokerProxy {
                     + mainCounter.maxLatency() + " ms");
         }
         long requiredTotalTime = requirement.getTotalTime();
-        if (requiredTotalTime >= 0) {
-            if (elapsedMillis > requiredTotalTime) {
-                context.fail("Test run " + getId() + " exceeded timeout of "
-                        + requiredTotalTime + " ms running " + elapsedMillis
-                        + " ms");
-            }
+        if (requiredTotalTime >= 0 && elapsedMillis > requiredTotalTime) {
+            context.fail("Test run " + getId() + " exceeded timeout of "
+                    + requiredTotalTime + " ms running " + elapsedMillis
+                    + " ms");
         }
         int requiredThroughput = requirement.getThroughput();
         if (requiredThroughput > 0 && elapsedMillis > 0) {

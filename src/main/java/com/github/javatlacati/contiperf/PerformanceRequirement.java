@@ -95,17 +95,17 @@ public class PerformanceRequirement {
 
     public boolean isAllowedError() {
 
-        return (allowedErrorsRate > 0.0);
+        return allowedErrorsRate > 0.0;
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder("average=");
-        builder.append(average);
-        builder.append(", max=").append(max);
-        builder.append(", totalTime=").append(totalTime);
-        builder.append(", throughput=").append(throughput);
-        builder.append(", percentiles=").append(percentiles);
+        StringBuilder builder = new StringBuilder("average=")
+                .append(average)
+                .append(", max=").append(max)
+                .append(", totalTime=").append(totalTime)
+                .append(", throughput=").append(throughput)
+                .append(", percentiles=").append(percentiles);
         return builder.toString();
     }
 

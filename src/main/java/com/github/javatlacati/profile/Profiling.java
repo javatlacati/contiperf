@@ -34,7 +34,7 @@ public class Profiling {
 
     public static boolean isEnabled() {
 	String config = System.getProperty("profile");
-	return (config != null && !"false".equals(config));
+	return config != null && !"false".equals(config);
     }
 
 }

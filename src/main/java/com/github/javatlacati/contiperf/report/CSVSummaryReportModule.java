@@ -22,20 +22,20 @@
 
 package com.github.javatlacati.contiperf.report;
 
+import com.github.javatlacati.contiperf.ExecutionConfig;
+import com.github.javatlacati.contiperf.PerformanceRequirement;
+import com.github.javatlacati.contiperf.util.ContiPerfUtil;
+import com.github.javatlacati.stat.LatencyCounter;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Locale;
-import java.util.Set;
-
-import com.github.javatlacati.contiperf.ExecutionConfig;
-import com.github.javatlacati.contiperf.PerformanceRequirement;
-import com.github.javatlacati.contiperf.util.ContiPerfUtil;
-import com.github.javatlacati.stat.LatencyCounter;
 
 /**
  * Writes summary information of the ContiPerf to a CSV file.<br>
@@ -49,8 +49,9 @@ public class CSVSummaryReportModule extends AbstractReportModule {
 
     private static final String LINE_SEPARATOR = System
             .getProperty("line.separator");
+    public static final char SEPARATOR = ',';
 
-    private static Set<File> usedFiles = new HashSet<>();
+    private static Collection<File> usedFiles = new HashSet<>();
 
     private File file;
 
@@ -63,12 +64,12 @@ public class CSVSummaryReportModule extends AbstractReportModule {
 
     @Override
     public String getReportReferenceLabel(String serviceId) {
-        return (serviceId == null ? "CSV Summary" : null);
+        return serviceId == null ? "CSV Summary" : null;
     }
 
     @Override
     public String getReportReference(String serviceId) {
-        return (serviceId == null ? filename() : null);
+        return serviceId == null ? filename() : null;
     }
 
     @Override
@@ -121,14 +122,19 @@ public class CSVSummaryReportModule extends AbstractReportModule {
             decForm.setGroupingUsed(false);
             LatencyCounter mainCounter = counters[0];
             String avg = decForm.format(mainCounter.averageLatency());
-            String message = serviceId + ',' + mainCounter.getStartTime() + ','
-                    + mainCounter.duration() + ',' + mainCounter.sampleCount()
-                    + ',' + mainCounter.minLatency() + ',' + avg + ','
-                    + mainCounter.percentileLatency(50) + ','
-                    + mainCounter.percentileLatency(90) + ','
-                    + mainCounter.percentileLatency(95) + ','
-                    + mainCounter.percentileLatency(99) + ','
-                    + mainCounter.maxLatency() + LINE_SEPARATOR;
+            String message = new StringBuilder()
+                    .append(serviceId).append(SEPARATOR)
+                    .append(mainCounter.getStartTime()).append(SEPARATOR)
+                    .append(mainCounter.duration()).append(SEPARATOR)
+                    .append(mainCounter.sampleCount()).append(SEPARATOR)
+                    .append(mainCounter.minLatency()).append(SEPARATOR)
+                    .append(avg).append(SEPARATOR)
+                    .append(mainCounter.percentileLatency(50)).append(SEPARATOR)
+                    .append(mainCounter.percentileLatency(90)).append(SEPARATOR)
+                    .append(mainCounter.percentileLatency(95)).append(SEPARATOR)
+                    .append(mainCounter.percentileLatency(99)).append(SEPARATOR)
+                    .append(mainCounter.maxLatency()).append(LINE_SEPARATOR)
+                    .toString();
             out.write(message.getBytes());
         } catch (IOException e) {
             e.printStackTrace();

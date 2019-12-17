@@ -22,18 +22,19 @@
 
 package com.github.javatlacati.contiperf;
 
-import java.io.File;
-
 import com.github.javatlacati.contiperf.report.HtmlReportModule;
 import com.github.javatlacati.contiperf.report.ReportContext;
+
+import java.io.File;
+import java.util.Locale;
 
 /**
  * Parses and provides the ContiPerf configuration.<br>
  * <br>
  * Created: 18.10.2009 06:46:31
- * 
- * @since 1.0
+ *
  * @author Volker Bergmann
+ * @since 1.0
  */
 public class Config {
 
@@ -43,64 +44,64 @@ public class Config {
     public static final String DEFAULT_CONFIG_FILENAME = "contiperf.config.xml";
 
     public boolean active() {
-	String sysprop = System.getProperty(SYSPROP_ACTIVE);
-	return (sysprop == null || !"false"
-		.equals(sysprop.trim().toLowerCase()));
+        String sysprop = System.getProperty(SYSPROP_ACTIVE);
+        return sysprop == null || !"false"
+                .equals(sysprop.trim().toLowerCase(Locale.US));
     }
 
     // helpers
     // ---------------------------------------------------------------------------------------------------------
 
     public static String getConfigFileName() {
-	String filename = System.getProperty(SYSPROP_CONFIG_FILENAME);
-	if (filename == null || filename.trim().length() == 0) {
-	    filename = DEFAULT_CONFIG_FILENAME;
-	}
-	return filename;
+        String filename = System.getProperty(SYSPROP_CONFIG_FILENAME);
+        if (filename == null || filename.trim().length() == 0) {
+            filename = DEFAULT_CONFIG_FILENAME;
+        }
+        return filename;
     }
 
     private static Config instance;
 
     public static Config instance() {
-	if (instance == null) {
-	    instance = new Config();
-	}
-	return instance;
+        if (instance == null) {
+            instance = new Config();
+        }
+        return instance;
     }
 
     public int getInvocationCount(String testId) {
-	// TODO v2.x read config file and support override of annotation
-	// settings
-	return -1;
+        // TODO v2.x read config file and support override of annotation
+        // settings
+        return -1;
     }
 
     public ReportContext createDefaultReportContext(
-	    Class<? extends AssertionError> failureClass) {
-	File reportFolder = getReportFolder();
-	ReportContext context = new ReportContext(reportFolder, failureClass);
-	context.addReportModule(new HtmlReportModule());
-	return context;
+            Class<? extends AssertionError> failureClass) {
+        File reportFolder = getReportFolder();
+        ReportContext context = new ReportContext(reportFolder, failureClass);
+        context.addReportModule(new HtmlReportModule());
+        return context;
     }
 
     public File getReportFolder() {
-	File targetDir = new File("target");
+        File targetDir = new File("target");
 
-		String dirName = System.getProperty(DEFAULT_REPORT_FOLDER_NAME);
-		if (dirName == null || dirName.trim().length() == 0) {
-			dirName = DEFAULT_CONFIG_FILENAME;
-		}
+        String dirName = System.getProperty(DEFAULT_REPORT_FOLDER_NAME);
+        if (dirName == null || dirName.trim().length() == 0) {
+            dirName = DEFAULT_CONFIG_FILENAME;
+        }
 
-		File reportFolder;
-		if (targetDir.exists()) {
-			reportFolder = new File(targetDir,
-					dirName);
-		} else {
-			reportFolder = new File(
-					dirName);
-		}
+        File reportFolder;
+        if (targetDir.exists()) {
+            reportFolder = new File(targetDir,
+                    dirName);
+        } else {
+            reportFolder = new File(
+                    dirName);
+        }
 
-		// TODO v2.x determine from config file
-	return reportFolder;
+        // TODO v2.x determine from config file
+        return reportFolder;
     }
 
 }
