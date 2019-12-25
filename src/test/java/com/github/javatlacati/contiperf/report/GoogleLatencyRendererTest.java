@@ -24,6 +24,8 @@ package com.github.javatlacati.contiperf.report;
 
 import com.github.javatlacati.stat.LatencyCounter;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
 import java.util.Random;
 
@@ -39,6 +41,7 @@ import static org.hamcrest.Matchers.startsWith;
  * @author Volker Bergmann
  * @since 2.0.0
  */
+@Execution(ExecutionMode.CONCURRENT)
 public class GoogleLatencyRendererTest {
 
     private static final int RANDOM_BOUND = 20;

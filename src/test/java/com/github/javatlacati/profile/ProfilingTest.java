@@ -22,46 +22,49 @@
 
 package com.github.javatlacati.profile;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests the profiling feature.<br>
  * <br>
  * Created: 21.07.2011 08:30:37
- * 
- * @since 2.0.0
+ *
  * @author Volker Bergmann
+ * @since 2.0.0
  */
+@Execution(ExecutionMode.CONCURRENT)
 public class ProfilingTest {
 
     private static String originalSetting;
 
     @BeforeClass
     public static void saveOriginalSetting() {
-	originalSetting = System.getProperty("profile");
+        originalSetting = System.getProperty("profile");
     }
 
     @AfterClass
     public static void restoreOriginalSetting() {
-	System.setProperty("profile",
-		(originalSetting != null ? originalSetting : "false"));
+        System.setProperty("profile",
+                (originalSetting != null ? originalSetting : "false"));
     }
 
     @Test
     public void testFalse() {
-	System.setProperty("profile", "false");
-	assertFalse(Profiling.isEnabled());
+        System.setProperty("profile", "false");
+        assertFalse(Profiling.isEnabled());
     }
 
     @Test
     public void testEmpty() {
-	System.setProperty("profile", "");
-	assertTrue(Profiling.isEnabled());
+        System.setProperty("profile", "");
+        assertTrue(Profiling.isEnabled());
     }
 
 }

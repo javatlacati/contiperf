@@ -22,6 +22,8 @@
 package com.github.javatlacati.profile;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,45 +35,46 @@ import static org.junit.Assert.assertEquals;
  * Tests the {@link Profiler}.<br>
  * <br>
  * Created: 19.05.2011 09:43:47
- * 
- * @since 2.0.0
+ *
  * @author Volker Bergmann
+ * @since 2.0.0
  */
+@Execution(ExecutionMode.CONCURRENT)
 public class ProfilerTest {
 
     @Test
     public void test() {
 
-	// given
-	Profiler profiler = new Profiler("test", 100, "ds");
+        // given
+        Profiler profiler = new Profiler("test", 100, "ds");
 
-	// when
-	List<String> path = new ArrayList<>();
-	profiler.addSample(path, 1000);
-	path.add("sub1");
-	profiler.addSample(path, 200);
-	path.remove(path.size() - 1);
-	path.add("sub2");
-	profiler.addSample(path, 300);
-	profiler.addSample(path, 400);
+        // when
+        List<String> path = new ArrayList<>();
+        profiler.addSample(path, 1000);
+        path.add("sub1");
+        profiler.addSample(path, 200);
+        path.remove(path.size() - 1);
+        path.add("sub2");
+        profiler.addSample(path, 300);
+        profiler.addSample(path, 400);
 
-	// then
-	Profile rootProfile = profiler.getRootProfile();
-	assertEquals(1, rootProfile.getInvocationCount());
-	assertEquals(10., rootProfile.getAverageLatency(), 0.01);
-	assertEquals(10, rootProfile.getTotalLatency());
+        // then
+        Profile rootProfile = profiler.getRootProfile();
+        assertEquals(1, rootProfile.getInvocationCount());
+        assertEquals(10., rootProfile.getAverageLatency(), 0.01);
+        assertEquals(10, rootProfile.getTotalLatency());
 
-	Profile sub1Profile = rootProfile.getOrCreateSubProfile("sub1");
-	assertEquals(1, sub1Profile.getInvocationCount());
-	assertEquals(2., sub1Profile.getAverageLatency(), 0.01);
-	assertEquals(2, sub1Profile.getTotalLatency());
+        Profile sub1Profile = rootProfile.getOrCreateSubProfile("sub1");
+        assertEquals(1, sub1Profile.getInvocationCount());
+        assertEquals(2., sub1Profile.getAverageLatency(), 0.01);
+        assertEquals(2, sub1Profile.getTotalLatency());
 
-	Profile sub2Profile = rootProfile.getOrCreateSubProfile("sub2");
-	assertEquals(2, sub2Profile.getInvocationCount());
-	assertEquals(3.5, sub2Profile.getAverageLatency(), 0.01);
-	assertEquals(7, sub2Profile.getTotalLatency());
+        Profile sub2Profile = rootProfile.getOrCreateSubProfile("sub2");
+        assertEquals(2, sub2Profile.getInvocationCount());
+        assertEquals(3.5, sub2Profile.getAverageLatency(), 0.01);
+        assertEquals(7, sub2Profile.getTotalLatency());
 
-	profiler.printSummary();
+        profiler.printSummary();
     }
 
 }

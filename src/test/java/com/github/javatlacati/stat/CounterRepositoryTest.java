@@ -24,6 +24,8 @@ package com.github.javatlacati.stat;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -37,6 +39,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
  * @author Volker Bergmann
  * @since 1.08
  */
+@Execution(ExecutionMode.CONCURRENT)
 public class CounterRepositoryTest {
 
     private static final String NAME = "CounterRepositoryTest";

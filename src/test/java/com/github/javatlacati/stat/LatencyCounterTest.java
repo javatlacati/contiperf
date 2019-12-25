@@ -26,6 +26,8 @@ package com.github.javatlacati.stat;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -39,6 +41,7 @@ import static org.hamcrest.Matchers.is;
  * @author Volker Bergmann
  * @since 2.1.0
  */
+@Execution(ExecutionMode.CONCURRENT)
 public class LatencyCounterTest {
 
     @Test

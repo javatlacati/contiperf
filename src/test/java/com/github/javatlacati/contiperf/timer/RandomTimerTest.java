@@ -24,6 +24,8 @@ package com.github.javatlacati.contiperf.timer;
 
 import com.github.javatlacati.contiperf.WaitTimer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
 import java.util.Random;
 
@@ -37,6 +39,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author Volker Bergmann
  * @since 2.1.0
  */
+@Execution(ExecutionMode.CONCURRENT)
 public class RandomTimerTest {
 
     private Random random = new Random();

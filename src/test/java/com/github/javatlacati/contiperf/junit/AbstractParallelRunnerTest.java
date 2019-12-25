@@ -28,6 +28,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.jupiter.migrationsupport.EnableJUnit4MigrationSupport;
 import org.junit.runner.RunWith;
 
 import java.util.Collections;
@@ -49,6 +50,7 @@ import static org.junit.Assert.assertTrue;
  * @author Lucas Pouzac
  * @since 2.4.0
  */
+@EnableJUnit4MigrationSupport
 @RunWith(ParallelRunner.class)
 @Parallel(count = AbstractParallelRunnerTest.CONCURRENT_COUNT)
 public abstract class AbstractParallelRunnerTest {
