@@ -22,50 +22,65 @@
 
 package com.github.javatlacati.stat;
 
-import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests the {@link LatencyCounter}.<br>
  * <br>
  * Created: 26.02.2012 18:31:16
- * 
- * @since 2.1.0
+ *
  * @author Volker Bergmann
+ * @since 2.1.0
  */
 public class LatencyCounterTest {
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void testStartTwice() {
-	LatencyCounter counter = new LatencyCounter("test");
-	counter.start();
-	counter.start();
+
+        Assertions.assertThrows(IllegalStateException.class, new Executable() {
+			@Override
+			public void execute() throws Throwable {
+				LatencyCounter counter = new LatencyCounter("test");
+				counter.start();
+				counter.start();
+			}
+		});
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void testStopTwice() {
-	LatencyCounter counter = new LatencyCounter("test");
-	counter.start();
-	counter.stop();
-	counter.stop();
+		Assertions.assertThrows(IllegalStateException.class, new Executable() {
+			@Override
+			public void execute() throws Throwable {
+				LatencyCounter counter = new LatencyCounter("test");
+				counter.start();
+				counter.stop();
+				counter.stop();
+			}
+		});
+
     }
 
     @Test
     public void testPercentileAboveLatency() {
-	LatencyCounter counter = new LatencyCounter("test");
-	counter.start();
-	for (int i = 25; i <= 125; i += 25) {
-	    counter.addSample(i, null);
-	}
-	counter.stop();
-	assertEquals(100., counter.percentileAboveLatency(0), 0.);
-	assertEquals(80., counter.percentileAboveLatency(25), 0.);
-	assertEquals(40., counter.percentileAboveLatency(99), 0.);
-	assertEquals(20., counter.percentileAboveLatency(100), 0.);
-	assertEquals(20., counter.percentileAboveLatency(124), 0.);
-	assertEquals(0., counter.percentileAboveLatency(125), 0.);
-	assertEquals(0., counter.percentileAboveLatency(126), 0.);
+        LatencyCounter counter = new LatencyCounter("test");
+        counter.start();
+        for (int i = 25; i <= 125; i += 25) {
+            counter.addSample(i, null);
+        }
+        counter.stop();
+        assertEquals(100., counter.percentileAboveLatency(0), 0.);
+        assertEquals(80., counter.percentileAboveLatency(25), 0.);
+        assertEquals(40., counter.percentileAboveLatency(99), 0.);
+        assertEquals(20., counter.percentileAboveLatency(100), 0.);
+        assertEquals(20., counter.percentileAboveLatency(124), 0.);
+        assertEquals(0., counter.percentileAboveLatency(125), 0.);
+        assertEquals(0., counter.percentileAboveLatency(126), 0.);
     }
 
 }

@@ -22,18 +22,20 @@
 
 package com.github.javatlacati.stat;
 
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
  * Tests the {@link CounterRepository}.<br>
  * <br>
  * Created: 14.01.2011 11:34:25
- * 
- * @since 1.08
+ *
  * @author Volker Bergmann
+ * @since 1.08
  */
 public class CounterRepositoryTest {
 
@@ -41,25 +43,23 @@ public class CounterRepositoryTest {
 
     CounterRepository repository = CounterRepository.getInstance();
 
-    @After
+    @AfterEach
     public void tearDown() {
-	repository.clear();
+        repository.clear();
     }
 
     @Test
     public void testLifeCyle() {
-	assertNull("Counter should not be defined yet",
-		repository.getCounter(NAME));
-	repository.addSample(NAME, 100);
-	LatencyCounter counter = repository.getCounter(NAME);
-	assertNotNull(
-		"Counter should have been defined after calling addSample()",
-		counter);
-		assertSame("repository is expected to return the same counter instance on subsequent calls to getCounter()", counter, repository.getCounter(NAME));
-	repository.clear();
-	assertNull(
-		"After calling clear(), the repository should have no counters",
-		repository.getCounter(NAME));
+        assertNull(
+                repository.getCounter(NAME), "Counter should not be defined yet");
+        repository.addSample(NAME, 100);
+        LatencyCounter counter = repository.getCounter(NAME);
+        assertNotNull(
+                counter, "Counter should have been defined after calling addSample()");
+        assertSame(counter, repository.getCounter(NAME), "repository is expected to return the same counter instance on subsequent calls to getCounter()");
+        repository.clear();
+        assertNull(
+                repository.getCounter(NAME), "After calling clear(), the repository should have no counters");
     }
 
 }
