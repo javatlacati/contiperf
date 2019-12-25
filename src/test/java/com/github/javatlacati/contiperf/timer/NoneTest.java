@@ -22,28 +22,29 @@
 
 package com.github.javatlacati.contiperf.timer;
 
-import static org.junit.Assert.assertEquals;
-
 import com.github.javatlacati.contiperf.WaitTimer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 /**
  * Tests the '{@link None}' wait timer.<br>
  * <br>
  * Created: 06.04.2012 18:18:34
- * 
- * @since 2.1.0
+ *
  * @author Volker Bergmann
+ * @since 2.1.0
  */
 public class NoneTest {
 
     @Test
     public void testEmptyInitialization() throws Exception {
-	WaitTimer timer = None.class.newInstance();
-	timer.init(new double[0]);
-	for (int i = 0; i < 1000; i++) {
-	    assertEquals(0, timer.getWaitTime());
-	}
+        WaitTimer timer = None.class.getDeclaredConstructor().newInstance();
+        timer.init(new double[0]);
+        for (int i = 0; i < 1000; i++) {
+            assertThat(timer.getWaitTime(), is(0));
+        }
     }
 
 }

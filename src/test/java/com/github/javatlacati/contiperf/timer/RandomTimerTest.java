@@ -22,59 +22,70 @@
 
 package com.github.javatlacati.contiperf.timer;
 
-import static org.junit.Assert.assertTrue;
-
 import com.github.javatlacati.contiperf.WaitTimer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests the {@link RandomTimer}.<br>
  * <br>
  * Created: 06.04.2012 18:13:59
- * 
- * @since 2.1.0
+ *
  * @author Volker Bergmann
+ * @since 2.1.0
  */
 public class RandomTimerTest {
 
+    private Random random = new Random();
+
     @Test
     public void testEmptyInitialization() throws Exception {
-	WaitTimer timer = RandomTimer.class.newInstance();
-	timer.init(new double[0]);
-	for (int i = 0; i < 1000; i++) {
-	    assertRange(500, 1500, timer.getWaitTime());
-	}
+        WaitTimer timer = RandomTimer.class.getDeclaredConstructor().newInstance();
+        timer.init(new double[0]);
+        final int defaultMinimumExpected = 500;
+        final int defaultMaximumExpected = 1500;
+        for (int i = 0; i < 1000; i++) {
+            assertRange(defaultMinimumExpected, defaultMaximumExpected, timer.getWaitTime());
+        }
     }
 
     @Test
     public void testUnderInitialization() throws Exception {
-	WaitTimer timer = RandomTimer.class.newInstance();
-	timer.init(new double[] { 2000 });
-	for (int i = 0; i < 1000; i++) {
-	    assertRange(2000, 3000, timer.getWaitTime());
-	}
+        WaitTimer timer = RandomTimer.class.getDeclaredConstructor().newInstance();
+        int minimumExpected = random.nextInt(2000);
+        timer.init(new double[]{minimumExpected});
+        for (int i = 0; i < 1000; i++) {
+            assertRange(minimumExpected, minimumExpected + 1000, timer.getWaitTime());
+        }
     }
 
     @Test
     public void testNormalInitialization() throws Exception {
-	WaitTimer timer = RandomTimer.class.newInstance();
-	timer.init(new double[] { 2000, 2500 });
-	for (int i = 0; i < 1000; i++) {
-	    assertRange(2000, 2500, timer.getWaitTime());
-	}
+        WaitTimer timer = RandomTimer.class.getDeclaredConstructor().newInstance();
+        int minimumExpected = random.nextInt(2000);
+        int maximumExpected = 2500;
+        timer.init(new double[]{minimumExpected, maximumExpected});
+        for (int i = 0; i < 1000; i++) {
+            assertRange(minimumExpected, maximumExpected, timer.getWaitTime());
+        }
     }
 
     @Test
     public void testOverInitialization() throws Exception {
-	WaitTimer timer = RandomTimer.class.newInstance();
-	timer.init(new double[] { 2000, 2500, 3000 });
-	for (int i = 0; i < 1000; i++) {
-	    assertRange(2000, 2500, timer.getWaitTime());
-	}
+        WaitTimer timer = RandomTimer.class.getDeclaredConstructor().newInstance();
+        int minimumExpected = random.nextInt(2000);
+        int maximumExpected = 2500;
+        timer.init(new double[]{minimumExpected, maximumExpected, 3000});
+        for (int i = 0; i < 1000; i++) {
+            assertRange(minimumExpected, maximumExpected, timer.getWaitTime());
+        }
     }
 
-    private void assertRange(int minExpected, int maxExpected, int waitTime) {
-	assertTrue(minExpected <= waitTime && waitTime <= maxExpected);
+    private void assertRange(int minimumExpected, int maximumExpected, int waitTime) {
+        assertTrue(minimumExpected <= waitTime && waitTime <= maximumExpected);
     }
 
 }
