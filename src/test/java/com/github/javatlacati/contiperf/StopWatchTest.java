@@ -57,14 +57,14 @@ public class StopWatchTest {
     @Test
     public void testSingleCall() throws InterruptedException {
         sleepTimed(STANDARD_DELAY);
-        assertThat(getCounter().sampleCount(), is(1));
+        assertThat(getCounter().sampleCount(), is(1L));
     }
 
     @Test
     public void testSubsequentCalls() throws InterruptedException {
-        sleepTimed(50);
-        sleepTimed(50);
-        sleepTimed(50);
+        sleepTimed(STANDARD_DELAY);
+        sleepTimed(STANDARD_DELAY);
+        sleepTimed(STANDARD_DELAY);
         LatencyCounter counter = getCounter();
         assertThat(counter.sampleCount(), is(3L));
         assertThat(counter.minLatency(), OrderingComparison.greaterThanOrEqualTo(39L));
@@ -82,7 +82,7 @@ public class StopWatchTest {
                 public void run() {
                     try {
                         for (int i = 0; i < 20; i++) {
-                            sleepTimed(50);
+                            sleepTimed(STANDARD_DELAY);
                         }
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
