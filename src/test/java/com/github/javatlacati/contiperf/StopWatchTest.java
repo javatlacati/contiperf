@@ -22,13 +22,16 @@
 
 package com.github.javatlacati.contiperf;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import com.github.javatlacati.stat.CounterRepository;
 import com.github.javatlacati.stat.LatencyCounter;
-import org.junit.After;
-import org.junit.Test;
+import org.hamcrest.number.OrderingComparison;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 /**
  * Tests the {@link StopWatch}.<br>
@@ -41,16 +44,20 @@ import org.junit.Test;
 public class StopWatchTest {
 
     private static final String NAME = "StopWatchTest";
+    /**
+     * Delay in milli seconds
+     */
+    private static final int STANDARD_DELAY = 50;
 
-    @After
+    @AfterEach
     public void tearDown() {
         CounterRepository.getInstance().clear();
     }
 
     @Test
     public void testSingleCall() throws InterruptedException {
-        sleepTimed(50);
-        assertEquals(1, getCounter().sampleCount());
+        sleepTimed(STANDARD_DELAY);
+        assertThat(getCounter().sampleCount(), is(1));
     }
 
     @Test
@@ -59,11 +66,11 @@ public class StopWatchTest {
         sleepTimed(50);
         sleepTimed(50);
         LatencyCounter counter = getCounter();
-        assertEquals(3, counter.sampleCount());
-        assertTrue(counter.minLatency() >= 39);
-        assertTrue(counter.minLatency() < 100);
-        assertTrue(counter.averageLatency() >= 39);
-        assertTrue(counter.averageLatency() < 100);
+        assertThat(counter.sampleCount(), is(3L));
+        assertThat(counter.minLatency(), OrderingComparison.greaterThanOrEqualTo(39L));
+        assertThat(counter.minLatency(), OrderingComparison.lessThan(100L));
+        assertThat(counter.averageLatency(), OrderingComparison.greaterThanOrEqualTo(39.));
+        assertThat(counter.averageLatency(), OrderingComparison.lessThan(100.));
     }
 
     @Test
@@ -83,25 +90,31 @@ public class StopWatchTest {
                 }
             };
         }
-		for (Thread thread : threads) {
-			thread.start();
-		}
-		for (Thread thread : threads) {
-			thread.join();
-		}
+        for (Thread thread : threads) {
+            thread.start();
+        }
+        for (Thread thread : threads) {
+            thread.join();
+        }
         LatencyCounter counter = getCounter();
-        assertEquals(400, counter.sampleCount());
-        assertTrue(counter.minLatency() >= 39);
-        assertTrue(counter.minLatency() < 100);
-        assertTrue(counter.averageLatency() >= 39);
-        assertTrue(counter.averageLatency() < 100);
+        assertThat(counter.sampleCount(), is(400L));
+        assertThat(counter.minLatency(), OrderingComparison.greaterThanOrEqualTo(39L));
+        assertThat(counter.minLatency(), OrderingComparison.lessThan(100L));
+        assertThat(counter.averageLatency(), OrderingComparison.greaterThanOrEqualTo(39.));
+        assertThat(counter.averageLatency(), OrderingComparison.lessThan(100.));
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void testMultiStop() {
-        StopWatch watch = new StopWatch(NAME);
-        watch.stop();
-        watch.stop();
+        Assertions.assertThrows(RuntimeException.class, new Executable() {
+            @Override
+            public void execute() throws Throwable {
+                StopWatch watch = new StopWatch(NAME);
+                watch.stop();
+                watch.stop();
+            }
+        });
+
     }
 
     private void sleepTimed(int delay) throws InterruptedException {

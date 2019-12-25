@@ -26,15 +26,15 @@ package com.github.javatlacati.contiperf.log;
  * Helper class for testing.<br>
  * <br>
  * Created: 23.05.2010 06:17:33
- * 
- * @since 1.05
+ *
  * @author Volker Bergmann
+ * @since 1.05
  */
 public class FileExecutionLoggerTestUtil {
 
     @SuppressWarnings("deprecation")
     public static void resetInvocationCount() {
-	FileExecutionLogger.invocationCount.set(0L);
+        FileExecutionLogger.invocationCount.set(0L);
     }
 
 }

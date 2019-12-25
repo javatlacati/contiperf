@@ -21,12 +21,13 @@
 
 package com.github.javatlacati.profile;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
 
 /**
  * Tests the {@link Profiler}.<br>

@@ -27,7 +27,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 
 /**
  * Tests the {@link LatencyCounter}.<br>
@@ -74,13 +76,13 @@ public class LatencyCounterTest {
             counter.addSample(i, null);
         }
         counter.stop();
-        assertEquals(100., counter.percentileAboveLatency(0), 0.);
-        assertEquals(80., counter.percentileAboveLatency(25), 0.);
-        assertEquals(40., counter.percentileAboveLatency(99), 0.);
-        assertEquals(20., counter.percentileAboveLatency(100), 0.);
-        assertEquals(20., counter.percentileAboveLatency(124), 0.);
-        assertEquals(0., counter.percentileAboveLatency(125), 0.);
-        assertEquals(0., counter.percentileAboveLatency(126), 0.);
+        assertThat(counter.percentileAboveLatency(0), is(100.));
+        assertThat(counter.percentileAboveLatency(25), is(80.));
+        assertThat(counter.percentileAboveLatency(99), is(40.));
+        assertThat(counter.percentileAboveLatency(100), is(20.));
+        assertThat(counter.percentileAboveLatency(124), is(20.));
+        assertThat(counter.percentileAboveLatency(125), is(0.));
+        assertThat(counter.percentileAboveLatency(126), is(0.));
     }
 
 }
