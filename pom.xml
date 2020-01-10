@@ -98,7 +98,7 @@
         <junit5.vintage.version>4.12.3</junit5.vintage.version>
         <version.wagon-ftp>1.0-alpha-6</version.wagon-ftp>
         <version.maven-resources-plugin>2.6</version.maven-resources-plugin>
-        <version.maven-site-plugin>3.3</version.maven-site-plugin>
+        <version.maven-site-plugin>3.8.2</version.maven-site-plugin>
         <version.maven-javadoc-plugin>3.1.1</version.maven-javadoc-plugin>
         <version.maven-eclipse-plugin>2.9</version.maven-eclipse-plugin>
         <version.jdepend-maven-plugin>2.0</version.jdepend-maven-plugin>
