@@ -96,7 +96,7 @@
 
     <properties>
         <junit5.vintage.version>4.12.3</junit5.vintage.version>
-        <version.wagon-ftp>3.3.4</version.wagon-ftp>
+        <version.wagon-ftp>3.4.0</version.wagon-ftp>
         <version.maven-resources-plugin>3.1.0</version.maven-resources-plugin>
         <version.maven-site-plugin>3.8.2</version.maven-site-plugin>
         <version.maven-javadoc-plugin>3.2.0</version.maven-javadoc-plugin>
